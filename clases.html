@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clases - Gimnasio X</title>
+    <link rel="stylesheet" href="css\clases.css">
+    </head>
+    <body>
+    <header>
+        <div class="mega-menu">
+        <div class="logo">Gimnasio X</div>
+        <ul class="menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li class="dropdown">
+            <a href="#">Clases</a>
+            <ul class="submenu">
+                <li><a href="#">Cardio</a></li>
+                <li><a href="#">Fuerza</a></li>
+                <li><a href="#">Flexibilidad</a></li>
+            </ul>
+            </li>
+            <li><a href="entrenadores.html">Entrenadores</a></li>
+            <li><a href="precios.html">Precios</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+        </div>
+    </header>
+
+    <main class="contenido-clases">
+        <h1>Nuestras Clases</h1>
+        <div class="filtros">
+        <button class="filtro activo" data-clase="todos">Todos</button>
+        <button class="filtro" data-clase="cardio">Cardio</button>
+        <button class="filtro" data-clase="fuerza">Fuerza</button>
+        <button class="filtro" data-clase="yoga">Yoga</button>
+        </div>
+
+        <section class="grid-clases">
+        <article class="clase-item cardio">
+            <h3>Spinning</h3>
+            <p>Alta intensidad en bicicleta fija.</p>
+        </article>
+        <article class="clase-item fuerza">
+            <h3>CrossFit</h3>
+            <p>Entrenamiento funcional de fuerza.</p>
+        </article>
+        <article class="clase-item yoga">
+            <h3>Yoga Flow</h3>
+            <p>Mejora tu flexibilidad y respira profundo.</p>
+        </article>
+        <article class="clase-item fuerza">
+            <h3>Levantamiento Olímpico</h3>
+            <p>Técnica y potencia muscular.</p>
+        </article>
+        <article class="clase-item cardio">
+            <h3>Boxeo Fitness</h3>
+            <p>Golpes, cardio y coordinación.</p>
+        </article>
+        </section>
+    </main>
+        <script src="js\clases.js"></script>
+    </body>
+</html>

@@ -1,0 +1,129 @@
+/* precios.css */
+
+:root {
+    --color-principal: #ff5e57;
+    --color-secundario: #1e1e2f;
+    --color-fondo: #111;
+    --color-texto: #fff;
+    --font-main: 'Segoe UI', sans-serif;
+    --color-destacado: #29293d;
+  }
+  
+  body {
+    margin: 0;
+    font-family: var(--font-main);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+  }
+  
+  header {
+    background: var(--color-secundario);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+  
+  .mega-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    font-size: 1.8rem;
+    color: var(--color-principal);
+  }
+  
+  .menu {
+    list-style: none;
+    display: flex;
+    gap: 1.2rem;
+  }
+  
+  .menu a {
+    color: var(--color-texto);
+    text-decoration: none;
+    padding: 0.5rem;
+    transition: color 0.3s;
+  }
+  
+  .menu a:hover,
+  .menu a.activo {
+    color: var(--color-principal);
+  }
+  
+  .planes {
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+  
+  .planes h1 {
+    font-size: 2.5rem;
+    color: var(--color-principal);
+    margin-bottom: 2rem;
+  }
+  
+  .tabla-planes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  
+  .columna {
+    background: #222;
+    border-radius: 1rem;
+    padding: 2rem 1rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease;
+  }
+  
+  .columna:hover {
+    transform: translateY(-5px);
+  }
+  
+  .columna h2 {
+    color: var(--color-principal);
+    margin-bottom: 1rem;
+  }
+  
+  .columna ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+  }
+  
+  .columna ul li {
+    padding: 0.5rem 0;
+    font-size: 1rem;
+    border-bottom: 1px solid #333;
+  }
+  
+  .precio {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #4caf50;
+    margin-top: 1rem;
+  }
+  
+  .destacado {
+    background: var(--color-destacado);
+    border: 2px solid var(--color-principal);
+  }
+  
+  footer {
+    background: var(--color-secundario);
+    color: var(--color-texto);
+    padding: 1.5rem;
+    text-align: center;
+    margin-top: 3rem;
+  }
+  
+  @media (max-width: 768px) {
+    .tabla-planes {
+      grid-template-columns: 1fr;
+    }
+  }
+  

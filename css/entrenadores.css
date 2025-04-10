@@ -1,0 +1,159 @@
+/* entrenadores.css */
+
+:root {
+    --color-principal: #ff5e57;
+    --color-secundario: #1e1e2f;
+    --color-fondo: #111;
+    --color-texto: #fff;
+    --font-main: 'Segoe UI', sans-serif;
+  }
+  
+  body {
+    margin: 0;
+    font-family: var(--font-main);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+  }
+  
+  header {
+    background: var(--color-secundario);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+  .mega-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    font-size: 1.8rem;
+    color: var(--color-principal);
+  }
+  .menu {
+    list-style: none;
+    display: flex;
+    gap: 1.2rem;
+  }
+  .menu a {
+    color: var(--color-texto);
+    text-decoration: none;
+    padding: 0.5rem;
+    transition: color 0.3s;
+  }
+  .menu a:hover,
+  .menu a.activo {
+    color: var(--color-principal);
+  }
+  
+  .contenido-entrenadores {
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+  .contenido-entrenadores h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--color-principal);
+  }
+  
+  .grid-entrenadores {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    justify-content: center;
+  }
+  
+  .card-entrenador {
+    background: #222;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transition: transform 0.3s, background 0.3s;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  }
+  .card-entrenador:hover {
+    transform: translateY(-5px);
+    background: var(--color-secundario);
+  }
+  .card-entrenador img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 0.8rem;
+    margin-bottom: 1rem;
+  }
+  .card-entrenador h3 {
+    margin: 0.5rem 0;
+    color: var(--color-principal);
+  }
+  .card-entrenador p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  .card-entrenador button {
+    margin-top: 1rem;
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: var(--color-principal);
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .card-entrenador button:hover {
+    background: #ff3b3b;
+  }
+  
+  footer {
+    background: var(--color-secundario);
+    color: var(--color-texto);
+    padding: 1.5rem;
+    text-align: center;
+    margin-top: 3rem;
+  }
+  
+  /* MODAL */
+  .modal-info {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+  
+  .modal-contenido {
+    background: var(--color-secundario);
+    padding: 2rem;
+    border-radius: 1rem;
+    text-align: center;
+    max-width: 400px;
+    color: var(--color-texto);
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    position: relative;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .modal-contenido h3 {
+    color: var(--color-principal);
+    margin-bottom: 1rem;
+  }
+  
+  .cerrar {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--color-principal);
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+  }

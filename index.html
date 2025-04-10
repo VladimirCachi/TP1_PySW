@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gimnasio FitLife</title>
+  <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+  <!-- HEADER CON MEGA-MENÚ -->
+  <header>
+    <button class="boton-modo" onclick="document.body.classList.toggle('modo-claro')">
+      Cambiar modo
+    </button>    
+    <nav class="mega-menu">
+      <h1 class="logo">FitLife</h1>
+      <ul class="menu">
+        <li><a href="index.html">Inicio</a></li>
+        <li class="dropdown">
+          <a href="clases.html">Clases</a>
+          <ul class="submenu">
+            <li><a href="clases.html">Ver todas</a></li>
+            <li><a href="#">Musculación</a></li>
+            <li><a href="#">Yoga</a></li>
+          </ul>
+        </li>
+        <li><a href="entrenadores.html">Entrenadores</a></li>
+        <li><a href="precios.html">Precios</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO CON VIDEO DE FONDO -->
+  <section class="hero">
+    <video autoplay muted loop class="hero-video">
+      <source src="assets/videos/entrenamiento.mp4" type="video/mp4">
+    </video>
+    <div class="overlay">
+      <h2 class="hero-text">Entrena fuerte, vive mejor</h2>
+    </div>
+  </section>
+
+  <!-- CLASES DESTACADAS -->
+  <section class="clases">
+    <h2>Clases Destacadas</h2>
+    <div class="cards">
+      <div class="card">Musculación</div>
+      <div class="card">Yoga</div>
+      <div class="card">Spinning</div>
+    </div>
+  </section>
+
+  <!-- CONTADOR ANIMADO -->
+  <section class="contador">
+    <h2><span class="numero">500+</span> socios satisfechos</h2>
+  </section>
+
+
+  <!-- TESTIMONIOS -->
+    <h2>Lo que dicen nuestros clientes</h2>
+  
+    <div class="carrusel-testimonios">
+      <div class="slide-track">
+        <div class="testimonio">
+          <p>“¡Entreno acá hace 6 meses y me siento increíble!”</p>
+          <span>- Carla M.</span>
+        </div>
+        <div class="testimonio">
+          <p>“Entrenadores súper atentos y profesionales.”</p>
+          <span>- Luis F.</span>
+        </div>
+        <div class="testimonio">
+          <p>“El ambiente es lo mejor, me motiva cada día.”</p>
+          <span>- Ana G.</span>
+        </div>
+        <!-- Copia para loop infinito -->
+        <div class="testimonio">
+          <p>“¡Entreno acá hace 6 meses y me siento increíble!”</p>
+          <span>- Carla M.</span>
+        </div>
+        <div class="testimonio">
+          <p>“Entrenadores súper atentos y profesionales.”</p>
+          <span>- Luis F.</span>
+        </div>
+        <div class="testimonio">
+          <p>“El ambiente es lo mejor, me motiva cada día.”</p>
+          <span>- Ana G.</span>
+        </div>
+      </div>
+  
+      <!-- Flechas (simuladas con pseudo-elementos si querés sin JS) -->
+      <div class="flechas">
+        <div class="izquierda"></div>
+        <div class="derecha"></div>
+      </div>
+    </div>
+  </section>
+    
+
+  <!-- FOOTER -->
+  <footer>
+    <form class="newsletter">
+      <label>Suscribite al newsletter:</label>
+      <input type="email" placeholder="Tu correo">
+      <button>Suscribirme</button>
+    </form>
+    <div class="redes">
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+    </div>
+    <div class="mapa">
+      <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-65.3%2C-24.2%2C-65.2%2C-24.1" width="300" height="200"></iframe>
+    </div>
+  </footer>
+</body>
+</html>

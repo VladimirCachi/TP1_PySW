@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto - Gym Elite</title>
+  <link rel="stylesheet" href="css/contacto.css" />
+  <script src="js/contacto.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="mega-menu">
+      <div class="logo">Gym Elite</div>
+      <ul class="menu">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="clases.html">Clases</a></li>
+        <li><a href="entrenadores.html">Entrenadores</a></li>
+        <li><a class="activo" href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="formulario-contacto">
+    <h1>Contáctanos</h1>
+    <form id="formulario">
+      <label>Nombre completo
+        <input type="text" name="nombre" required />
+      </label>
+      <label>Email
+        <input type="email" name="email" required />
+      </label>
+      <label>Teléfono
+        <input type="tel" name="telefono" pattern="\\d{10}" placeholder="Ej: 1122334455" required />
+      </label>
+      <label>Área de interés
+        <select name="area" required>
+          <option value="">Selecciona una opción</option>
+          <option value="musculacion">Musculación</option>
+          <option value="crossfit">Crossfit</option>
+          <option value="nutricion">Nutrición</option>
+          <option value="personal">Entrenamiento Personal</option>
+        </select>
+      </label>
+      <label>Mensaje
+        <textarea name="mensaje" rows="4" required></textarea>
+      </label>
+      <button type="submit">Enviar mensaje</button>
+      <p id="respuesta" class="mensaje"></p>
+    </form>
+  </main>
+
+  <footer>
+    &copy; 2025 Gym Elite. Todos los derechos reservados.
+  </footer>
+</body>
+</html>

@@ -1,0 +1,121 @@
+/* clases.css */
+
+:root {
+    --color-principal: #ff5e57;
+    --color-secundario: #1e1e2f;
+    --color-fondo: #111;
+    --color-texto: #fff;
+    --font-main: 'Segoe UI', sans-serif;
+  }
+  
+  body {
+    margin: 0;
+    font-family: var(--font-main);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+  }
+  
+  header {
+    background: var(--color-secundario);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+  .mega-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    font-size: 1.8rem;
+    color: var(--color-principal);
+  }
+  .menu {
+    list-style: none;
+    display: flex;
+    gap: 1.2rem;
+  }
+  .menu li {
+    position: relative;
+  }
+  .menu a {
+    color: var(--color-texto);
+    text-decoration: none;
+    padding: 0.5rem;
+    transition: color 0.3s;
+  }
+  .menu a:hover {
+    color: var(--color-principal);
+  }
+  .submenu {
+    position: absolute;
+    top: 2.5rem;
+    background: var(--color-secundario);
+    padding: 0.5rem;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  }
+  .dropdown:hover .submenu {
+    display: flex;
+  }
+  
+  .contenido-clases {
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+  .filtros {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+  .filtro {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    background: #222;
+    color: var(--color-texto);
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .filtro:hover,
+  .filtro.activo {
+    background: var(--color-principal);
+    transform: scale(1.05);
+  }
+  
+  .grid-clases {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  .clase-item {
+    background: #222;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    transition: transform 0.3s, background 0.3s;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    cursor: pointer;
+  }
+  .clase-item:hover {
+    background: var(--color-principal);
+    transform: translateY(-5px);
+  }
+  .clase-item h3 {
+    margin-top: 0;
+    font-size: 1.4rem;
+    color: var(--color-texto);
+  }
+  .clase-item p {
+    font-size: 0.95rem;
+    color: #ddd;
+  }
+  
+  /* Ocultamiento dinámico (usado con JS) */
+  .clase-item.oculto {
+    display: none;
+  }
+  
