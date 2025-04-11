@@ -1,159 +1,310 @@
-/* entrenadores.css */
+/* css/entrenadores.css */
 
-:root {
-    --color-principal: #ff5e57;
-    --color-secundario: #1e1e2f;
-    --color-fondo: #111;
-    --color-texto: #fff;
-    --font-main: 'Segoe UI', sans-serif;
+/* --- Estilos Base (Asegúrate que las variables estén disponibles desde home.css) --- */
+body {
+  /* Estilos generales si son diferentes a home.css */
+  /* Asegúrate que las variables de color (:root) estén definidas, probablemente en home.css */
+}
+
+/* --- Header y Footer (Deberían heredar de home.css si está enlazado correctamente) --- */
+/* Si no hereda, copia los estilos del header y footer de home.css aquí */
+
+/* --- Contenido Principal --- */
+.contenido-entrenadores {
+  padding: 4rem 2rem;
+  text-align: center;
+  max-width: 1200px; /* Limita el ancho del contenido */
+  margin: 0 auto; /* Centra el contenido */
+}
+.contenido-entrenadores h1 {
+  font-size: 2.8rem;
+  margin-bottom: 3rem; /* Más espacio debajo del título */
+  color: var(--color-principal); /* Usa el color principal */
+}
+
+/* --- Grid de Entrenadores --- */
+.grid-entrenadores {
+  display: grid;
+  /* Crea columnas automáticas que tengan un mínimo de 280px y ocupen el espacio disponible */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem; /* Espacio entre tarjetas */
+}
+
+/* --- Estilos Flip Card --- */
+.card-entrenador {
+  background-color: transparent; /* El color lo darán las caras front/back */
+  height: 450px; /* Altura fija para la tarjeta (ajusta si es necesario) */
+  perspective: 1000px; /* Necesario para el efecto 3D del giro */
+  cursor: pointer;
+  border-radius: 15px; /* Redondeo aplicado al contenedor principal */
+  /* overflow: hidden; */ /* Quitado para que la sombra del inner se vea */
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s cubic-bezier(0.5, 0, 0.5, 1); /* Duración y timing del giro */
+  transform-style: preserve-3d; /* Mantiene el efecto 3D durante la transformación */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4); /* Sombra aplicada aquí */
+  border-radius: 15px; /* Redondeo también aquí para asegurar */
+}
+
+/* Efecto Hover: Gira el contenedor interno */
+.card-entrenador:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Lado frontal y trasero: posicionamiento y ocultación de la cara trasera */
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Para Safari */
+  backface-visibility: hidden; /* Oculta la cara que está detrás */
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px; /* Redondeo en ambas caras */
+  overflow: hidden; /* Asegura que el contenido respete el redondeo */
+}
+
+/* Estilos Lado Frontal */
+.card-front {
+  background-color: var(--color-secundario); /* Fondo oscuro */
+  color: var(--color-texto);
+  align-items: center; /* Centrar contenido horizontalmente */
+  text-align: center; /* Centrar texto */
+}
+.card-front img {
+  width: 100%;
+  height: 250px; /* Altura fija para la imagen frontal */
+  object-fit: cover; /* Escala la imagen para cubrir el área */
+}
+.card-front h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.6rem;
+  color: var(--color-principal);
+}
+.card-front p {
+  padding: 0 1rem; /* Espaciado lateral para el párrafo */
+  font-size: 0.95rem;
+  color: #ccc; /* Color de texto más suave */
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+.ver-mas-indicador {
+  font-size: 0.8rem;
+  color: #888; /* Color tenue */
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+
+/* Estilos Lado Trasero */
+.card-back {
+  background-color: #2a2a3a; /* Un fondo ligeramente diferente para el reverso */
+  color: var(--color-texto);
+  transform: rotateY(180deg); /* Posición inicial girada */
+  padding: 1.5rem;
+  text-align: left; /* Alineación izquierda para el contenido */
+  justify-content: space-around; /* Distribuye el espacio verticalmente */
+}
+.card-back h4 {
+  font-size: 1.5rem;
+  color: var(--color-principal);
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+  text-align: center; /* Centrar el nombre */
+}
+.card-back p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+.card-back h5 {
+  font-size: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: #aaa; /* Color tenue para subtítulos */
+  text-transform: uppercase; /* Mayúsculas */
+  border-bottom: 1px solid #444; /* Línea divisoria sutil */
+  padding-bottom: 0.2rem;
+}
+
+/* --- Estilos Skill Bars --- */
+.skills {
+  width: 100%;
+}
+.skill {
+  margin-bottom: 0.6rem; /* Espacio entre barras */
+}
+.skill-label {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+  color: #ddd; /* Color etiqueta */
+}
+.skill-bar {
+  width: 100%;
+  height: 12px; /* Altura de la barra */
+  background-color: #444; /* Fondo de la barra */
+  border-radius: 6px; /* Bordes redondeados */
+  overflow: hidden; /* Para que el nivel respete el redondeo */
+}
+.skill-level {
+  height: 100%;
+  background-color: var(--color-principal); /* Color de la barra de progreso */
+  border-radius: 6px;
+  width: 0; /* ANCHO INICIAL CERO para la animación */
+  /* Transición: propiedad(width), duración, timing-function, delay */
+  transition: width 1s cubic-bezier(0.25, 1, 0.5, 1) 0.5s;
+}
+
+/* Animar la barra cuando la tarjeta está girada (hover) */
+/* La transición definida en .skill-level se activará porque el width inline */
+/* que se aplica en el estado hover es diferente del width inicial (0) */
+.card-entrenador:hover .skill-level {
+  /* No se necesita regla específica aquí si el width está inline en el HTML */
+  /* El navegador aplicará el width del style y la transición hará el resto */
+}
+
+
+/* --- Estilos Rating Stars --- */
+.rating {
+  text-align: center; /* Centrar estrellas */
+  margin-top: 0.5rem;
+}
+.star {
+  font-size: 1.5rem; /* Tamaño de las estrellas */
+  color: #555; /* Color base de estrella vacía */
+  display: inline-block; /* Necesario para transformaciones */
+  transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+  cursor: default; /* Cursor normal, no de texto */
+  opacity: 0; /* Inician invisibles para la animación */
+  transform: scale(0.5); /* Inician pequeñas para la animación */
+}
+
+/* Estilo para estrellas llenas (usando clase rating-X en el div .rating) */
+/* Colorea las primeras X estrellas */
+.rating.rating-1 .star:nth-child(-n+1),
+.rating.rating-2 .star:nth-child(-n+2),
+.rating.rating-3 .star:nth-child(-n+3),
+.rating.rating-4 .star:nth-child(-n+4),
+.rating.rating-5 .star:nth-child(-n+5) {
+  color: #ffc107; /* Color dorado para estrellas llenas */
+}
+
+/* Animación de estrellas al girar la tarjeta (hover) */
+.card-entrenador:hover .star {
+  /* Nombre de la animación, duración, timing-function, fill-mode (mantiene estado final) */
+  animation: popIn 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+}
+/* Aplicar delay escalonado a cada estrella para que aparezcan secuencialmente */
+.card-entrenador:hover .star:nth-child(1) { animation-delay: 0.6s; }
+.card-entrenador:hover .star:nth-child(2) { animation-delay: 0.7s; }
+.card-entrenador:hover .star:nth-child(3) { animation-delay: 0.8s; }
+.card-entrenador:hover .star:nth-child(4) { animation-delay: 0.9s; }
+.card-entrenador:hover .star:nth-child(5) { animation-delay: 1.0s; }
+
+/* Definición de la animación @keyframes */
+@keyframes popIn {
+  0% {
+      transform: scale(0.5);
+      opacity: 0;
   }
-  
-  body {
-    margin: 0;
-    font-family: var(--font-main);
-    background-color: var(--color-fondo);
-    color: var(--color-texto);
+  100% {
+      transform: scale(1);
+      opacity: 1;
   }
-  
-  header {
-    background: var(--color-secundario);
-    padding: 1rem 2rem;
-    position: sticky;
-    top: 0;
-    z-index: 999;
-  }
-  .mega-menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .logo {
-    font-size: 1.8rem;
-    color: var(--color-principal);
-  }
-  .menu {
-    list-style: none;
-    display: flex;
-    gap: 1.2rem;
-  }
-  .menu a {
-    color: var(--color-texto);
-    text-decoration: none;
-    padding: 0.5rem;
-    transition: color 0.3s;
-  }
-  .menu a:hover,
-  .menu a.activo {
-    color: var(--color-principal);
-  }
-  
-  .contenido-entrenadores {
-    padding: 3rem 2rem;
-    text-align: center;
-  }
+}
+
+
+/* --- Estilos Modo Claro (Opcional, si usas el botón aquí) --- */
+body.modo-claro .card-front {
+  background-color: #fff; /* Fondo claro */
+  color: var(--color-texto); /* Texto oscuro (variable modo claro) */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Sombra más suave */
+}
+body.modo-claro .card-front h3 {
+  color: var(--color-principal); /* Mantener color principal? */
+}
+body.modo-claro .card-front p {
+  color: #555; /* Párrafo gris oscuro */
+}
+body.modo-claro .ver-mas-indicador {
+  color: #aaa; /* Indicador gris claro */
+}
+
+body.modo-claro .card-back {
+  background-color: #f8f8f8; /* Fondo muy claro */
+  color: #333; /* Texto oscuro */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+body.modo-claro .card-back h4 {
+  color: var(--color-principal);
+}
+body.modo-claro .card-back p {
+  color: #444;
+}
+body.modo-claro .card-back h5 {
+  color: #777;
+  border-bottom-color: #ddd;
+}
+body.modo-claro .skill-label {
+  color: #444;
+}
+body.modo-claro .skill-bar {
+  background-color: #ddd; /* Fondo barra claro */
+}
+body.modo-claro .skill-level {
+  background-color: var(--color-principal); /* Mantener color principal */
+}
+body.modo-claro .star {
+  color: #ccc; /* Estrella vacía clara */
+}
+/* El color de las estrellas llenas se mantiene dorado */
+body.modo-claro .rating.rating-1 .star:nth-child(-n+1),
+body.modo-claro .rating.rating-2 .star:nth-child(-n+2),
+body.modo-claro .rating.rating-3 .star:nth-child(-n+3),
+body.modo-claro .rating.rating-4 .star:nth-child(-n+4),
+body.modo-claro .rating.rating-5 .star:nth-child(-n+5) {
+  color: #ffc107;
+}
+
+
+/* --- Media Queries (Ajustes Responsivos) --- */
+@media (max-width: 992px) {
+  /* Ajustes para tablets si son necesarios */
+}
+
+@media (max-width: 768px) {
   .contenido-entrenadores h1 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    color: var(--color-principal);
+      font-size: 2.2rem; /* Título más pequeño */
   }
-  
   .grid-entrenadores {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    justify-content: center;
+      gap: 1.5rem; /* Menos espacio entre tarjetas */
   }
-  
   .card-entrenador {
-    background: #222;
-    border-radius: 1rem;
-    padding: 1.5rem;
-    transition: transform 0.3s, background 0.3s;
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+      height: 420px; /* Reducir altura en pantallas medianas */
   }
-  .card-entrenador:hover {
-    transform: translateY(-5px);
-    background: var(--color-secundario);
+  .card-front h3, .card-back h4 {
+      font-size: 1.4rem; /* Títulos internos más pequeños */
   }
-  .card-entrenador img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 0.8rem;
-    margin-bottom: 1rem;
+  .card-front img {
+      height: 220px; /* Imagen frontal más pequeña */
   }
-  .card-entrenador h3 {
-    margin: 0.5rem 0;
-    color: var(--color-principal);
+}
+
+@media (max-width: 600px) {
+  .grid-entrenadores {
+      grid-template-columns: 1fr; /* Una columna en móvil */
+      max-width: 350px; /* Limitar ancho máximo en vista de una columna */
+      margin-left: auto;
+      margin-right: auto;
   }
-  .card-entrenador p {
-    font-size: 0.95rem;
-    line-height: 1.5;
+  .card-entrenador {
+      height: 420px; /* Mantener altura fija (o ajustar si se prefiere auto) */
   }
-  .card-entrenador button {
-    margin-top: 1rem;
-    padding: 0.6rem 1rem;
-    border: none;
-    border-radius: 0.5rem;
-    background: var(--color-principal);
-    color: white;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  .card-entrenador button:hover {
-    background: #ff3b3b;
-  }
-  
-  footer {
-    background: var(--color-secundario);
-    color: var(--color-texto);
-    padding: 1.5rem;
-    text-align: center;
-    margin-top: 3rem;
-  }
-  
-  /* MODAL */
-  .modal-info {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.7);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-  }
-  
-  .modal-contenido {
-    background: var(--color-secundario);
-    padding: 2rem;
-    border-radius: 1rem;
-    text-align: center;
-    max-width: 400px;
-    color: var(--color-texto);
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    position: relative;
-    animation: fadeIn 0.5s ease-in-out;
-  }
-  
-  .modal-contenido h3 {
-    color: var(--color-principal);
-    margin-bottom: 1rem;
-  }
-  
-  .cerrar {
-    position: absolute;
-    top: 0.5rem;
-    right: 1rem;
-    font-size: 2rem;
-    cursor: pointer;
-    color: var(--color-principal);
-  }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
-  }
+}
