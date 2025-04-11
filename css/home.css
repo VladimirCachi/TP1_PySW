@@ -6,6 +6,8 @@
   --color-fondo: #111;
   --color-texto: #fff;
   --font-main: 'Segoe UI', sans-serif;
+  --color-fondo-testimonios-dark: #1a1a1a;
+  --color-fondo-testimonios-light: #f9f9f9;
 }
 
 body {
@@ -13,14 +15,15 @@ body {
   font-family: var(--font-main);
   background-color: var(--color-fondo);
   color: var(--color-texto);
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.4s, color 0.4s;
 }
 
 body.modo-claro {
-  --color-fondo: #f4f4f4;
-  --color-secundario: #ddd;
+  --color-fondo: #f2f2f2;
+  --color-secundario: #e1e1e1;
   --color-texto: #111;
   --color-principal: #d60000;
+  --color-fondo-testimonios-dark: var(--color-fondo-testimonios-light);
 }
 
 .boton-modo {
@@ -30,37 +33,50 @@ body.modo-claro {
   background: var(--color-principal);
   color: #fff;
   border: none;
-  padding: 0.6rem 1rem;
-  border-radius: 0.5rem;
+  font-size: 1.3rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 50%;
   cursor: pointer;
-  z-index: 1000;
-  transition: background 0.3s;
+  z-index: 10000;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  transition: background 0.3s, transform 0.2s;
+}
+body.modo-claro .boton-modo {
+    color: #fff;
 }
 .boton-modo:hover {
-  background: #e03c3c;
+  background: #b00000;
+  transform: scale(1.1);
 }
 
 /* HEADER Y MENÚ */
 header {
   background: var(--color-secundario);
-  padding: 1rem 2rem;
+  padding: 1rem 6rem 1rem 2rem;
   position: sticky;
   top: 0;
   z-index: 999;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 .mega-menu {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 .logo {
   font-size: 1.8rem;
   color: var(--color-principal);
+  margin: 0;
+  font-weight: bold;
 }
 .menu {
   list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
-  gap: 1.2rem;
+  gap: 1.5rem;
 }
 .menu li {
   position: relative;
@@ -68,189 +84,531 @@ header {
 .menu a {
   color: var(--color-texto);
   text-decoration: none;
-  padding: 0.5rem;
-  transition: color 0.3s;
+  padding: 0.5rem 0.2rem;
+  transition: color 0.3s, border-bottom 0.3s;
+  white-space: nowrap;
+  position: relative;
+  border-bottom: 2px solid transparent;
 }
-.menu a:hover {
+.menu a:hover,
+.menu a.activo { /* Estilo para enlace activo */
   color: var(--color-principal);
-}
-.submenu {
-  position: absolute;
-  top: 2.5rem;
-  background: var(--color-secundario);
-  padding: 0.5rem;
-  display: none;
-  flex-direction: column;
-  box-shadow: 0 0 10px rgba(0,0,0,0.4);
-}
-.dropdown:hover .submenu {
-  display: flex;
+  border-bottom-color: var(--color-principal);
 }
 
 /* HERO */
 .hero {
   position: relative;
   height: 80vh;
+  min-height: 400px;
   overflow: hidden;
-}
-.hero-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.6);
-}
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
 }
+.hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -1;
+  filter: brightness(0.5);
+}
+.overlay {
+  z-index: 1;
+  padding: 1rem; /* Añadir padding por si el texto es muy largo */
+}
 .hero-text {
-  font-size: 3rem;
+  font-size: clamp(2rem, 6vw, 3.5rem);
   color: #fff;
-  animation: slideIn 1.5s ease-in-out;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  animation: slideIn 1.5s ease-out forwards;
+  opacity: 0;
+  margin-bottom: 1.5rem;
 }
 @keyframes slideIn {
-  from { transform: translateY(100px); opacity: 0; }
+  from { transform: translateY(50px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
+}
+
+/* Estilos para el Botón del Hero */
+.boton-hero {
+  display: inline-block;
+  background-color: var(--color-principal);
+  color: #ffffff;
+  padding: 12px 28px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  border: 2px solid var(--color-principal);
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.boton-hero:hover {
+  background-color: transparent;
+  color: var(--color-principal);
+  /* color: #ffffff; */
+  /* background-color: #b00000; */
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* CLASES DESTACADAS */
 .clases {
-  padding: 3rem 2rem;
+  padding: 4rem 2rem;
   text-align: center;
+  background-color: var(--color-secundario);
+  color: var(--color-texto);
+}
+.clases h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2.5rem;
 }
 .cards {
   display: flex;
-  gap: 1.5rem;
+  gap: 1.5rem; /* Reducido gap para que quepan mejor */
   justify-content: center;
   flex-wrap: wrap;
   margin-top: 1.5rem;
 }
 .card {
-  background: #222;
-  padding: 2rem;
-  border-radius: 1rem;
-  width: 200px;
-  transition: transform 0.3s, background 0.3s;
+  background: #2a2a3a;
+  border-radius: 10px;
+  /* Eliminado min-width, usamos flex-basis */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s;
   cursor: pointer;
+  color: var(--color-texto);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */ /* Quitamos centrado para que el texto se alinee a la izquierda */
+  overflow: hidden; /* Para que la imagen no se salga del borde redondeado */
+  flex: 1 1 250px; /* Flex-grow, flex-shrink, flex-basis. Permite que crezcan y se encojan, con un tamaño base de 250px */
+  max-width: 300px; /* Ancho máximo opcional por tarjeta */
 }
+
+/* --- Estilos para la imagen dentro de la card --- */
+.card img {
+    width: 100%; /* Ocupa todo el ancho de la card */
+    height: 200px; /* Altura fija para todas las imágenes (ajusta si es necesario) */
+    object-fit: cover; /* Escala la imagen para cubrir el área manteniendo la proporción, puede recortar */
+    display: block; /* Elimina espacio extra debajo de la imagen */
+}
+
+/* Contenido de texto de la card */
+.card-content { /* Envolver h3 y p en un div si necesitas más control */
+    padding: 1.5rem; /* Padding para el texto */
+    text-align: left; /* Alineación del texto */
+}
+
+.card h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 0.8rem;
+    color: var(--color-texto);
+}
+.card p {
+    font-size: 0.95rem;
+    color: #ccc;
+    line-height: 1.5;
+    margin: 0;
+}
+
+body.modo-claro .card {
+    background: #ffffff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    color: var(--color-texto);
+}
+body.modo-claro .card h3 {
+    color: #333;
+}
+body.modo-claro .card p {
+    color: #666;
+}
+
 .card:hover {
-  transform: scale(1.05);
+  transform: translateY(-10px); /* Ajustado efecto hover */
   background: var(--color-principal);
+  color: #fff;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
 }
+.card:hover h3,
+.card:hover p {
+    color: #fff;
+}
+body.modo-claro .card:hover h3,
+body.modo-claro .card:hover p {
+    color: #fff;
+}
+
 
 /* CONTADOR */
 .contador {
-  background: #222;
+  background: var(--color-principal);
   text-align: center;
-  padding: 2rem;
-  font-size: 2rem;
+  padding: 3rem 2rem;
+  font-size: 2.2rem;
+  color: #fff;
+}
+.contador h2 {
+    margin: 0;
+    font-weight: 600;
 }
 .numero {
-  color: var(--color-principal);
-  animation: aumentar 3s ease-in-out infinite alternate;
+  color: #fff; /* O el color que prefieras */
+  font-weight: bold;
+  display: inline-block; /* Mantenido para evitar saltos de línea */
 }
 @keyframes aumentar {
   0% { transform: scale(1); }
-  100% { transform: scale(1.2); }
+  100% { transform: scale(1.1); }
 }
 
-/* TESTIMONIOS - AUTO SLIDER CSS */
-.testimonios {
-  background: #1c1c2b;
+/* --- ESTILOS TESTIMONIOS --- */
+.testimonios-seccion {
   padding: 4rem 2rem;
   text-align: center;
+  background-color: var(--color-fondo-testimonios-dark);
+  transition: background-color 0.4s;
+  overflow-x: hidden;
 }
-.testimonios h2 {
-  color: var(--color-principal);
-  margin-bottom: 2rem;
-  font-size: 2rem;
+
+.testimonios-seccion h2 {
+  margin-bottom: 3rem;
+  font-size: 2.5rem;
+  color: var(--color-texto);
 }
+
 .carrusel-testimonios {
-  position: relative;
   max-width: 800px;
-  margin: auto;
+  margin: 0 auto;
   overflow: hidden;
-  border-radius: 1rem;
+  position: relative;
 }
+
 .slide-track {
   display: flex;
-  animation: autoScroll 20s linear infinite;
-  width: max-content;
 }
+
 .testimonio {
   min-width: 100%;
   box-sizing: border-box;
-  background: #29293d;
-  padding: 2rem;
-  border-radius: 1rem;
-  margin: 0 0.5rem;
-  color: #fff;
+  padding: 20px 50px;
+  flex-shrink: 0;
+  text-align: center;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  min-height: 150px;
+}
+
+.testimonio p {
+  font-style: italic;
+  margin-bottom: 1rem;
+  color: #e0e0e0;
+  transition: color 0.4s;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.testimonio span {
+  font-weight: bold;
+  color: #cccccc;
+  transition: color 0.4s;
+  margin-top: auto;
+}
+
+.flechas {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.flecha {
+  background-color: rgba(50, 50, 50, 0.6);
+  color: white;
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.8em;
+  z-index: 10;
+  pointer-events: all;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
-  transition: transform 0.3s ease;
+  line-height: 1;
 }
-.testimonio span {
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  color: #ccc;
+.flecha.izquierda {
+    margin-left: -15px;
 }
-@keyframes autoScroll {
-  0%   { transform: translateX(0%); }
-  20%  { transform: translateX(-100%); }
-  40%  { transform: translateX(-200%); }
-  60%  { transform: translateX(-300%); }
-  80%  { transform: translateX(-400%); }
-  100% { transform: translateX(-500%); }
+.flecha.derecha {
+    margin-right: -15px;
 }
+
+.flecha:hover {
+  background-color: rgba(80, 80, 80, 0.9);
+  transform: scale(1.1);
+}
+
+/* --- AJUSTES PARA MODO CLARO --- */
+body.modo-claro .testimonios-seccion {
+  background-color: var(--color-fondo-testimonios-light);
+}
+
+body.modo-claro .testimonios-seccion h2 {
+  color: var(--color-texto);
+}
+
+body.modo-claro .testimonio p {
+  color: #555555;
+}
+
+body.modo-claro .testimonio span {
+  color: #333333;
+}
+
+body.modo-claro .flecha {
+   background-color: rgba(225, 225, 225, 0.7);
+   color: #333;
+}
+
+body.modo-claro .flecha:hover {
+  background-color: rgba(200, 200, 200, 1);
+  color: #000;
+}
+
 
 /* FOOTER */
 footer {
   background: var(--color-secundario);
   color: var(--color-texto);
-  padding: 2rem;
+  padding: 3rem 2rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
+  gap: 2.5rem;
   text-align: center;
+  border-top: 4px solid var(--color-principal);
+  align-items: center;
 }
-.newsletter input {
-  padding: 0.5rem;
-  margin: 0.5rem 0;
+
+.newsletter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+}
+.newsletter label {
+    font-weight: 500;
+}
+.newsletter input[type="email"] {
+  padding: 0.8rem;
+  margin: 0;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 5px;
+  background-color: #333;
+  color: #fff;
+  width: 80%;
+  max-width: 300px;
+  box-sizing: border-box;
 }
-.newsletter button {
-  padding: 0.5rem 1rem;
+body.modo-claro .newsletter input[type="email"] {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.newsletter button[type="submit"] {
+  padding: 0.8rem 1.5rem;
   background: var(--color-principal);
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   color: white;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.3s, transform 0.2s;
+  font-weight: bold;
 }
-.newsletter button:hover {
+.newsletter button[type="submit"]:hover {
   background: #ff3b3b;
+  transform: scale(1.05);
+}
+
+.redes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
 }
 .redes a {
-  display: block;
   color: var(--color-texto);
-  margin: 0.3rem 0;
   text-decoration: none;
+  transition: transform 0.2s;
+  display: inline-block;
 }
 .redes a:hover {
-  color: var(--color-principal);
+  transform: scale(1.15);
 }
+.redes img {
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+}
+
 .mapa iframe {
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 5px;
+  width: 100%; /* Ocupa todo el ancho de su columna */
+  /* max-width: 350px; */ /* Quitamos max-width para que se ajuste mejor */
+  height: 200px; /* Mantenemos altura */
+  filter: grayscale(0.3);
+  transition: filter 0.3s;
+  display: block; /* Para asegurar que ocupe el ancho */
+}
+.mapa iframe:hover {
+    filter: grayscale(0);
+}
+body.modo-claro .mapa iframe {
+   /* filter: invert(1) hue-rotate(180deg); */
+}
+
+/* --- AJUSTES RESPONSIVE ADICIONALES --- */
+
+@media (max-width: 992px) {
+    header {
+        padding: 1rem 4rem 1rem 1.5rem;
+    }
+    .mega-menu {
+        max-width: 90%;
+    }
+    .menu {
+        gap: 1rem;
+    }
+    .card {
+        flex-basis: calc(50% - 1rem); /* Dos tarjetas por fila en tablets */
+        max-width: calc(50% - 1rem);
+    }
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 1rem 3.5rem 1rem 1rem;
+  }
+  .logo {
+      font-size: 1.6rem;
+  }
+  .menu {
+      gap: 0.8rem;
+  }
+  .menu a {
+      font-size: 0.95rem;
+  }
+  .clases, .testimonios-seccion, .contador, footer {
+      padding: 3rem 1.5rem;
+  }
+  /* .card { */
+      /* min-width: 180px; */ /* Ya no se usa */
+  /* } */
+  footer {
+      gap: 2rem;
+      grid-template-columns: 1fr;
+      text-align: center;
+  }
+  .redes {
+      margin-top: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  header {
+    padding: 0.8rem 3.5rem 0.8rem 1rem;
+  }
+  .logo {
+      font-size: 1.5rem;
+  }
+  .menu {
+      gap: 0.5rem;
+  }
+  .menu a {
+      padding: 0.3rem;
+      font-size: 0.9rem;
+  }
+  .hero {
+      height: 60vh;
+  }
+  .clases h2, .testimonios-seccion h2 {
+      font-size: 2rem;
+  }
+  .contador {
+      padding: 2rem 1rem;
+      font-size: 1.8rem;
+  }
+  .card {
+      /* width: calc(50% - 1rem); */ /* Comentado, flex-basis se encarga */
+      flex-basis: calc(50% - 0.75rem); /* Ajustar base para 2 columnas */
+      max-width: calc(50% - 0.75rem);
+      /* min-width: unset; */
+      /* padding: 1.5rem; */ /* Padding ahora en .card-content */
+  }
+  .card-content {
+      padding: 1rem; /* Menos padding en móvil */
+  }
+  .card h3 {
+      font-size: 1.2rem;
+  }
+  .card p {
+      font-size: 0.9rem;
+  }
+  .cards {
+      gap: 1rem;
+  }
+  .flecha.izquierda {
+    margin-left: 5px;
+  }
+  .flecha.derecha {
+    margin-right: 5px;
+  }
+  .testimonio {
+     padding: 20px 30px;
+  }
+  footer {
+      padding: 2rem 1rem;
+      gap: 1.5rem;
+  }
+  .newsletter input[type="email"] {
+      width: 90%;
+  }
+  .mapa iframe {
+      max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+    .card {
+        flex-basis: 100%; /* Una card por fila en pantallas más pequeñas */
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 400px) {
+    .menu {
+        display: none; /* Ocultar menú normal */
+    }
+    /* Aquí irían los estilos para un botón hamburguesa si lo implementas */
 }
