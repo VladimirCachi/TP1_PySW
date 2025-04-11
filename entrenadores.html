@@ -5,15 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Entrenadores - FitZone</title>
   <link rel="stylesheet" href="css\entrenadores.css">
+  <link rel="stylesheet" href="css\home.css"> <!-- Estilos comunes/footer -->
 </head>
 <body>
   <header>
+    <button id="botonModo" class="boton-modo" aria-label="Cambiar modo">
+      🌙
+    </button>
     <div class="mega-menu">
       <div class="logo">FitZone</div>
       <ul class="menu">
         <li><a href="index.html">Inicio</a></li>
         <li><a href="clases.html">Clases</a></li>
         <li><a href="entrenadores.html" class="activo">Entrenadores</a></li>
+        <li><a href="precios.html">Precios</a></li>
+        <li><a href="blog.html">Blog</a></li>
         <li><a href="contacto.html">Contacto</a></li>
       </ul>
     </div>
@@ -22,30 +28,162 @@
   <main class="contenido-entrenadores">
     <h1>Nuestro Equipo</h1>
     <div class="grid-entrenadores">
+
+      <!-- Tarjeta Entrenador 1 -->
       <div class="card-entrenador">
-        <img src="img/entrenador1.jpg" alt="Juan López">
-        <h3>Juan López</h3>
-        <p>Especialista en fuerza y acondicionamiento físico.</p>
-        <button>Ver más</button>
+        <div class="card-inner">
+          <!-- Lado Frontal -->
+          <div class="card-front">
+            <img src="assets/img/entrenador1.jpg" alt="Tomas Masa">
+            <h3>Tomas Masa</h3>
+            <p>Especialista en fuerza y acondicionamiento.</p>
+            <span class="ver-mas-indicador">(Ver más...)</span>
+          </div>
+          <!-- Lado Trasero -->
+          <div class="card-back">
+            <h4>Tomas Masa</h4>
+            <p>Más de 10 años ayudando a atletas a alcanzar su máximo potencial. Certificado en NSCA-CSCS.</p>
+            <h5>Habilidades:</h5>
+            <div class="skills">
+              <div class="skill">
+                <span class="skill-label">Fuerza</span>
+                <div class="skill-bar"><div class="skill-level" style="width: 95%;"></div></div>
+              </div>
+              <div class="skill">
+                <span class="skill-label">Hipertrofia</span>
+                <div class="skill-bar"><div class="skill-level" style="width: 90%;"></div></div>
+              </div>
+              <div class="skill">
+                <span class="skill-label">Acondicionamiento</span>
+                <div class="skill-bar"><div class="skill-level" style="width: 85%;"></div></div>
+              </div>
+            </div>
+            <h5>Rating:</h5>
+            <div class="rating rating-5"> <!-- Clase rating-X para indicar estrellas llenas -->
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+            </div>
+          </div>
+        </div>
       </div>
+      <!-- Fin Tarjeta Entrenador 1 -->
+
+      <!-- Tarjeta Entrenador 2 -->
       <div class="card-entrenador">
-        <img src="img/entrenadora1.jpg" alt="Ana Torres">
-        <h3>Malena Morales</h3>
-        <p>Instructora de yoga, pilates y meditación.</p>
-        <button>Ver más</button>
+        <div class="card-inner">
+          <!-- Lado Frontal -->
+          <div class="card-front">
+            <img src="assets/img/entrenador3.jpg" alt="La Locomotora Oliveras"> <!-- Nombre real? -->
+            <h3>"La Locomotora"</h3>
+            <p>Instructora de boxeo, yoga y pilates.</p>
+             <span class="ver-mas-indicador">(Ver más...)</span>
+          </div>
+          <!-- Lado Trasero -->
+          <div class="card-back">
+            <h4>"La Locomotora"</h4>
+            <p>Combina la intensidad del boxeo con la calma del yoga para un enfoque integral. Ex-boxeadora profesional.</p>
+            <h5>Habilidades:</h5>
+            <div class="skills">
+              <div class="skill">
+                <span class="skill-label">Boxeo</span>
+                <div class="skill-bar"><div class="skill-level" style="width: 98%;"></div></div>
+              </div>
+              <div class="skill">
+                <span class="skill-label">Yoga/Pilates</span>
+                <div class="skill-bar"><div class="skill-level" style="width: 80%;"></div></div>
+              </div>
+              <div class="skill">
+                <span class="skill-label">Flexibilidad</span>
+                <div class="skill-bar"><div class="skill-level" style="width: 85%;"></div></div>
+              </div>
+            </div>
+            <h5>Rating:</h5>
+            <div class="rating rating-4">
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">☆</span> <!-- Estrella vacía -->
+            </div>
+          </div>
+        </div>
       </div>
+      <!-- Fin Tarjeta Entrenador 2 -->
+
+      <!-- Tarjeta Entrenador 3 -->
       <div class="card-entrenador">
-        <img src="img/entrenador2.jpg" alt="Carlos Ruiz">
-        <h3>Carlos Ruiz</h3>
-        <p>Entrenamiento funcional y pérdida de peso.</p>
-        <button>Ver más</button>
+        <div class="card-inner">
+          <!-- Lado Frontal -->
+          <div class="card-front">
+            <img src="assets/img/entrenador2.jpg" alt="Victor Melida">
+            <h3>Victor Melida</h3>
+            <p>Entrenamiento funcional y pérdida de peso.</p>
+             <span class="ver-mas-indicador">(Ver más...)</span>
+          </div>
+          <!-- Lado Trasero -->
+          <div class="card-back">
+            <h4>Victor Melida</h4>
+            <p>Enfoque en cambios de hábitos sostenibles y entrenamiento adaptado a tus objetivos de composición corporal.</p>
+            <h5>Habilidades:</h5>
+            <div class="skills">
+              <div class="skill">
+                <span class="skill-label">Funcional</span>
+                <div class="skill-bar"><div class="skill-level" style="width: 90%;"></div></div>
+              </div>
+              <div class="skill">
+                <span class="skill-label">Pérdida de Peso</span>
+                <div class="skill-bar"><div class="skill-level" style="width: 92%;"></div></div>
+              </div>
+              <div class="skill">
+                <span class="skill-label">Nutrición Deportiva</span>
+                <div class="skill-bar"><div class="skill-level" style="width: 75%;"></div></div>
+              </div>
+            </div>
+            <h5>Rating:</h5>
+            <div class="rating rating-4">
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">☆</span>
+            </div>
+          </div>
+        </div>
       </div>
+      <!-- Fin Tarjeta Entrenador 3 -->
+
     </div>
   </main>
 
   <footer>
-    <p>&copy; 2025 FitZone. Todos los derechos reservados.</p>
+    <form class="newsletter">
+      <label for="email-newsletter">Suscribite al newsletter:</label>
+      <input type="email" id="email-newsletter" placeholder="Tu correo" required>
+      <button type="submit">Suscribirme</button>
+    </form>
+    <div class="redes">
+      <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <img src="assets/img/instagram.png" alt="Instagram">
+      </a>
+      <a href="https://Facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <img src="assets/img/facebook.png" alt="Facebook">
+      </a>
+    </div>
+    <div class="mapa">
+      <iframe
+        title="Ubicación del Gimnasio"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=-65.3%2C-24.2%2C-65.2%2C-24.1&layer=mapnik"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
   </footer>
+  <script src="js\home.js"></script>
   <script src="js\entrenadores.js"></script>
 </body>
 </html>
