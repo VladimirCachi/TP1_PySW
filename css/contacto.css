@@ -1,130 +1,181 @@
-/* contacto.css */
+/* css/contacto.css */
 
-:root {
-    --color-principal: #ff5e57;
-    --color-secundario: #1e1e2f;
-    --color-fondo: #111;
-    --color-texto: #fff;
-    --font-main: 'Segoe UI', sans-serif;
-  }
-  
-  body {
-    margin: 0;
-    font-family: var(--font-main);
-    background-color: var(--color-fondo);
-    color: var(--color-texto);
-  }
-  
-  header {
-    background: var(--color-secundario);
-    padding: 1rem 2rem;
-    position: sticky;
-    top: 0;
-    z-index: 999;
-  }
-  
-  .mega-menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .logo {
-    font-size: 1.8rem;
-    color: var(--color-principal);
-  }
-  
-  .menu {
-    list-style: none;
-    display: flex;
-    gap: 1.2rem;
-  }
-  
-  .menu a {
-    color: var(--color-texto);
-    text-decoration: none;
-    padding: 0.5rem;
-    transition: color 0.3s;
-  }
-  
-  .menu a:hover,
-  .menu a.activo {
-    color: var(--color-principal);
-  }
-  
+/* --- Estilos Base (Asumimos Modo Oscuro por defecto) --- */
+body {
+  /* Hereda estilos de home.css si está enlazado antes */
+  /* Puedes añadir estilos específicos del body para esta página si es necesario */
+}
+
+/* --- Header y Footer (Heredan de home.css) --- */
+
+/* --- Contenido Principal: Formulario --- */
+.formulario-contacto {
+  padding: 4rem 2rem;
+  max-width: 700px; /* Ancho máximo del formulario */
+  margin: 2rem auto; /* Centrar y dar espacio arriba/abajo */
+  background-color: var(--color-secundario); /* Fondo oscuro para el contenedor del form */
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  color: var(--color-texto); /* Texto claro por defecto */
+}
+
+.formulario-contacto h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--color-principal); /* Título con color principal */
+}
+
+#formulario {
+  display: grid;
+  gap: 1.5rem; /* Espacio entre campos */
+}
+
+#formulario label {
+  display: block; /* Hace que el input vaya debajo */
+  font-weight: 500; /* Peso de la etiqueta */
+  margin-bottom: 0.5rem; /* Espacio entre etiqueta e input */
+  color: var(--color-texto); /* Color de etiqueta claro */
+}
+
+#formulario input[type="text"],
+#formulario input[type="email"],
+#formulario input[type="tel"],
+#formulario select,
+#formulario textarea {
+  width: 100%; /* Ocupa todo el ancho disponible */
+  padding: 0.8rem;
+  border: 1px solid #444; /* Borde oscuro sutil */
+  border-radius: 5px;
+  background-color: #333; /* Fondo oscuro para inputs */
+  color: var(--color-texto); /* Texto claro dentro del input */
+  font-size: 1rem;
+  box-sizing: border-box; /* Incluye padding y borde en el width */
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#formulario input:focus,
+#formulario select:focus,
+#formulario textarea:focus {
+  outline: none; /* Quitar outline por defecto */
+  border-color: var(--color-principal); /* Borde con color principal al enfocar */
+  box-shadow: 0 0 5px rgba(var(--color-principal-rgb, 255, 94, 87), 0.5); /* Sombra al enfocar (necesitarías definir --color-principal-rgb) */
+  /* Alternativa sin variable RGB: */
+  /* box-shadow: 0 0 5px #ff5e5780; */
+}
+
+#formulario select {
+  /* Apariencia para que coincida */
+  appearance: none; /* Quitar estilo por defecto del navegador */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23cccccc' d='M6 8L0 2l1.4-1.4L6 5.2 10.6.6 12 2z'/%3E%3C/svg%3E"); /* Flecha SVG gris claro */
+  background-repeat: no-repeat;
+  background-position: right 0.8rem center;
+  background-size: 12px;
+  padding-right: 2.5rem; /* Espacio para la flecha */
+}
+
+#formulario textarea {
+  resize: vertical; /* Permitir redimensionar solo verticalmente */
+  min-height: 100px; /* Altura mínima */
+}
+
+#formulario button[type="submit"] {
+  padding: 0.9rem 1.5rem;
+  background-color: var(--color-principal);
+  color: #fff; /* Texto blanco */
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  justify-self: center; /* Centrar botón en el grid */
+  min-width: 180px; /* Ancho mínimo */
+}
+
+#formulario button[type="submit"]:hover {
+  background-color: #b00000; /* Color principal más oscuro en hover */
+  transform: scale(1.05);
+}
+
+/* Mensaje de respuesta */
+#respuesta {
+  text-align: center;
+  margin-top: 1rem;
+  font-weight: bold;
+  min-height: 1.5em; /* Espacio reservado aunque esté vacío */
+}
+#respuesta.exito {
+  color: #4CAF50; /* Verde para éxito */
+}
+#respuesta.error {
+  color: #f44336; /* Rojo para error */
+}
+
+/* --- Estilos Modo Claro --- */
+body.modo-claro .formulario-contacto {
+  background-color: #fff; /* Fondo blanco */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Sombra más suave */
+  color: var(--color-texto); /* Texto oscuro (variable modo claro) */
+}
+
+body.modo-claro #formulario label {
+  color: var(--color-texto); /* Color de etiqueta oscuro */
+}
+
+body.modo-claro #formulario input[type="text"],
+body.modo-claro #formulario input[type="email"],
+body.modo-claro #formulario input[type="tel"],
+body.modo-claro #formulario select,
+body.modo-claro #formulario textarea {
+  border-color: #ccc; /* Borde gris claro */
+  background-color: #f9f9f9; /* Fondo input muy claro */
+  color: var(--color-texto); /* Texto oscuro */
+}
+
+body.modo-claro #formulario select {
+  /* Flecha SVG gris oscuro para modo claro */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23555555' d='M6 8L0 2l1.4-1.4L6 5.2 10.6.6 12 2z'/%3E%3C/svg%3E");
+}
+
+body.modo-claro #formulario button[type="submit"] {
+  /* El botón puede mantener los mismos colores o ajustarse */
+  /* background-color: var(--color-principal); */
+  /* color: #fff; */
+}
+body.modo-claro #formulario button[type="submit"]:hover {
+  /* background-color: #b00000; */
+}
+
+/* --- Media Queries (Ajustes Responsivos) --- */
+@media (max-width: 768px) {
   .formulario-contacto {
-    max-width: 600px;
-    margin: 4rem auto;
-    padding: 2rem;
-    background: #222;
-    border-radius: 1rem;
-    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      padding: 3rem 1.5rem;
+      margin: 1.5rem auto;
   }
-  
   .formulario-contacto h1 {
-    color: var(--color-principal);
-    text-align: center;
-    margin-bottom: 2rem;
+      font-size: 2rem;
   }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .formulario-contacto {
+      padding: 2rem 1rem;
+      margin: 1rem;
+      border-radius: 5px;
   }
-  
-  label {
-    display: flex;
-    flex-direction: column;
-    font-weight: 500;
+  #formulario {
+      gap: 1rem;
   }
-  
-  input,
-  select,
-  textarea {
-    margin-top: 0.5rem;
-    padding: 0.8rem;
-    border: none;
-    border-radius: 0.5rem;
-    background: #333;
-    color: white;
-    font-size: 1rem;
+  #formulario input[type="text"],
+  #formulario input[type="email"],
+  #formulario input[type="tel"],
+  #formulario select,
+  #formulario textarea {
+      padding: 0.7rem;
   }
-  
-  button {
-    background: var(--color-principal);
-    color: white;
-    padding: 0.8rem;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background 0.3s ease;
+  #formulario button[type="submit"] {
+      width: 100%; /* Botón ocupa todo el ancho en móvil */
+      padding: 0.8rem;
   }
-  
-  button:hover {
-    background: #ff3b3b;
-  }
-  
-  .mensaje {
-    text-align: center;
-    margin-top: 1rem;
-    font-size: 1rem;
-    color: #4caf50;
-  }
-  
-  footer {
-    background: var(--color-secundario);
-    color: var(--color-texto);
-    padding: 1.5rem;
-    text-align: center;
-    margin-top: 3rem;
-  }
-  
-  @media (max-width: 600px) {
-    .formulario-contacto {
-      margin: 2rem;
-      padding: 1.5rem;
-    }
-  }
-  
+}

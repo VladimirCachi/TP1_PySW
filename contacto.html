@@ -5,19 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contacto - Gym Elite</title>
   <link rel="stylesheet" href="css/contacto.css" />
-  <script src="js/contacto.js" defer></script>
+  <link rel="stylesheet" href="css/home.css" /> <!-- Incluido home.css para estilos comunes -->
 </head>
 <body>
   <header>
-    <div class="mega-menu">
-      <div class="logo">Gym Elite</div>
+    <button id="botonModo" class="boton-modo" aria-label="Cambiar modo">
+      🌙
+    </button>
+    <nav class="mega-menu">
+      <h1 class="logo">FitLife</h1>
       <ul class="menu">
-        <li><a href="index.html">Inicio</a></li>
+        <li><a href="index.html" class="activo">Inicio</a></li> <!-- Añadida clase activo -->
         <li><a href="clases.html">Clases</a></li>
         <li><a href="entrenadores.html">Entrenadores</a></li>
-        <li><a class="activo" href="contacto.html">Contacto</a></li>
+        <li><a href="precios.html">Precios</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
       </ul>
-    </div>
+    </nav>
   </header>
 
   <main class="formulario-contacto">
@@ -29,9 +34,10 @@
       <label>Email
         <input type="email" name="email" required />
       </label>
-      <label>Teléfono
-        <input type="tel" name="telefono" pattern="\\d{10}" placeholder="Ej: 1122334455" required />
-      </label>
+      <div>
+        <label for="telefono">Teléfono (Opcional):</label>
+        <input type="tel" id="telefono" name="telefono" placeholder="Ej: 11 2345-6789">
+      </div>
       <label>Área de interés
         <select name="area" required>
           <option value="">Selecciona una opción</option>
@@ -48,9 +54,34 @@
       <p id="respuesta" class="mensaje"></p>
     </form>
   </main>
-
+  <!-- FOOTER -->
   <footer>
-    &copy; 2025 Gym Elite. Todos los derechos reservados.
+    <form class="newsletter">
+      <label for="email-newsletter">Suscribite al newsletter:</label>
+      <input type="email" id="email-newsletter" placeholder="Tu correo" required>
+      <button type="submit">Suscribirme</button>
+    </form>
+    <div class="redes">
+      <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"> <!-- Buenas prácticas para enlaces externos -->
+        <img src="assets/img/instagram.png" alt="Instagram">
+      </a>
+      <a href="https://Facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook"> <!-- Buenas prácticas para enlaces externos -->
+        <img src="assets/img/facebook.png" alt="Facebook">
+      </a>
+    </div>
+    <div class="mapa">
+      <iframe
+        title="Ubicación del Gimnasio"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=-65.3%2C-24.2%2C-65.2%2C-24.1&layer=mapnik"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+        <!-- Quitados width y height fijos para hacerlos responsivos con CSS -->
+      </iframe>
+    </div>
   </footer>
+  <script src="js/home.js"></script>
+  <script src="js/contacto.js"></script>
 </body>
 </html>
