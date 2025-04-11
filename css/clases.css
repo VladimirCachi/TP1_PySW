@@ -1,121 +1,454 @@
 /* clases.css */
 
 :root {
-    --color-principal: #ff5e57;
-    --color-secundario: #1e1e2f;
-    --color-fondo: #111;
-    --color-texto: #fff;
-    --font-main: 'Segoe UI', sans-serif;
-  }
-  
-  body {
-    margin: 0;
-    font-family: var(--font-main);
-    background-color: var(--color-fondo);
-    color: var(--color-texto);
-  }
-  
+  --color-principal: #ff5e57;
+  --color-secundario: #1e1e2f;
+  --color-fondo: #111;
+  --color-texto: #fff;
+  --font-main: 'Segoe UI', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-main);
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  /* Añadir transición si usas modo claro/oscuro aquí también */
+  transition: background-color 0.4s, color 0.4s;
+}
+
+/* --- Estilos Modo Claro (Añadir si usas el botón en esta página) --- */
+body.modo-claro {
+  --color-fondo: #f2f2f2;
+  --color-secundario: #e1e1e1;
+  --color-texto: #111;
+  --color-principal: #d60000;
+}
+
+/* --- Header (Asegúrate que sea consistente con home.css) --- */
+header {
+  background: var(--color-secundario);
+  /* Usar el mismo padding que en home.css para consistencia */
+  padding: 1rem 6rem 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.mega-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* Usar max-width y margin auto como en home.css */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.logo {
+  font-size: 1.8rem;
+  color: var(--color-principal);
+  margin: 0; /* Añadido */
+  font-weight: bold; /* Añadido */
+}
+.menu {
+  list-style: none;
+  margin: 0; /* Añadido */
+  padding: 0; /* Añadido */
+  display: flex;
+  /* Usar mismo gap que en home.css */
+  gap: 1.5rem;
+}
+.menu li {
+  position: relative;
+}
+.menu a {
+  color: var(--color-texto);
+  text-decoration: none;
+  /* Usar mismo padding y borde que en home.css */
+  padding: 0.5rem 0.2rem;
+  transition: color 0.3s, border-bottom 0.3s;
+  white-space: nowrap;
+  position: relative;
+  border-bottom: 2px solid transparent;
+}
+.menu a:hover,
+.menu a.activo { /* Añadido estilo .activo */
+  color: var(--color-principal);
+  /* Usar mismo borde que en home.css */
+  border-bottom-color: var(--color-principal);
+}
+/* Quitar submenu si no se usa en esta página */
+/*
+.submenu { ... }
+.dropdown:hover .submenu { ... }
+*/
+
+/* --- Contenido Principal --- */
+.contenido-clases {
+  padding: 4rem 2rem; /* Más padding vertical */
+  text-align: center;
+  max-width: 1200px; /* Limitar ancho */
+  margin: 0 auto; /* Centrar */
+}
+.contenido-clases h1 { /* Estilo para el H1 principal */
+  font-size: 2.8rem;
+  margin-bottom: 2.5rem;
+  color: var(--color-principal);
+}
+
+/* --- Filtros --- */
+.filtros {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem; /* Más espacio */
+  flex-wrap: wrap;
+}
+.filtro {
+  padding: 0.7rem 1.5rem; /* Más padding */
+  border: 1px solid var(--color-secundario); /* Borde sutil */
+  background: transparent; /* Fondo transparente por defecto */
+  color: var(--color-texto);
+  border-radius: 20px; /* Más redondeado */
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s, transform 0.2s, border-color 0.3s;
+  font-weight: 500; /* Peso medio */
+}
+.filtro:hover {
+  background: var(--color-secundario); /* Cambiar fondo en hover */
+  border-color: var(--color-secundario);
+  transform: scale(1.05);
+}
+.filtro.activo { /* Estilo del filtro activo */
+  background: var(--color-principal);
+  color: #fff; /* Asegurar texto blanco */
+  border-color: var(--color-principal);
+  transform: scale(1.05);
+}
+/* Estilos modo claro para filtros */
+body.modo-claro .filtro {
+  color: var(--color-texto);
+  border-color: #ccc;
+}
+body.modo-claro .filtro:hover {
+  background: #ddd;
+  border-color: #ddd;
+}
+body.modo-claro .filtro.activo {
+  background: var(--color-principal);
+  color: #fff;
+  border-color: var(--color-principal);
+}
+
+
+/* --- Grid de Clases --- */
+.grid-clases {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Ajustado minmax */
+  gap: 2rem; /* Más espacio */
+}
+.clase-item {
+  background: var(--color-secundario); /* Usar color secundario */
+  border-radius: 10px; /* Menos redondeado */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición más suave */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+  cursor: pointer;
+  overflow: hidden; /* Para que la imagen respete bordes */
+  display: flex; /* Para controlar mejor el contenido */
+  flex-direction: column;
+}
+.clase-item:hover {
+  /* background: var(--color-principal); */ /* Quitar cambio de fondo en hover? O mantenerlo? */
+  transform: translateY(-8px); /* Efecto hover más sutil */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+/* --- Estilos para la imagen dentro de la tarjeta de clase --- */
+.clase-item img {
+  width: 100%; /* Ocupa todo el ancho */
+  height: 220px; /* Altura fija (AJUSTA ESTE VALOR A TU GUSTO) */
+  object-fit: cover; /* Cubre el espacio manteniendo proporción */
+  display: block; /* Evita espacio extra */
+  transition: transform 0.3s ease; /* Transición para zoom en hover */
+}
+.clase-item:hover img {
+  transform: scale(1.05); /* Ligero zoom a la imagen en hover */
+}
+
+/* Contenido de texto de la tarjeta */
+.clase-item-contenido { /* Envolver h3 y p en este div */
+  padding: 1.5rem;
+  flex-grow: 1; /* Ocupa el espacio restante */
+  display: flex;
+  flex-direction: column;
+}
+
+.clase-item h3 {
+  margin-top: 0;
+  margin-bottom: 0.8rem; /* Espacio debajo del título */
+  font-size: 1.5rem; /* Tamaño título */
+  color: var(--color-principal); /* Título con color principal */
+}
+.clase-item p {
+  font-size: 0.95rem;
+  color: #ccc; /* Descripción más clara */
+  line-height: 1.6; /* Mejor interlineado */
+  flex-grow: 1; /* Empuja el botón (si hubiera) hacia abajo */
+  margin-bottom: 0; /* Quitar margen inferior si no hay botón */
+}
+
+/* Estilos modo claro para tarjetas */
+body.modo-claro .clase-item {
+  background: #fff;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+body.modo-claro .clase-item h3 {
+  color: var(--color-principal); /* Mantener color principal o cambiar a oscuro? */
+}
+body.modo-claro .clase-item p {
+  color: #555;
+}
+
+
+/* Ocultamiento dinámico (usado con JS) */
+.clase-item.oculto {
+  display: none;
+}
+
+/* --- Estilos para la Sección de Horarios --- */
+.horarios {
+padding: 4rem 2rem;
+/* background-color: var(--color-fondo); */ /* Puede heredar del body */
+color: var(--color-texto);
+text-align: center;
+}
+
+.horarios h2 {
+font-size: 2.5rem;
+margin-bottom: 2.5rem;
+color: var(--color-texto);
+}
+
+/* --- Estilos Base Tabla Horarios (Desktop) --- */
+.tabla-horarios {
+max-width: 1000px;
+margin: 0 auto;
+border: 1px solid var(--color-secundario);
+background-color: var(--color-secundario);
+border-radius: 8px;
+overflow: hidden;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.tabla-horarios__header,
+.tabla-horarios__fila {
+display: grid;
+grid-template-columns: repeat(7, 1fr);
+align-items: center;
+border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.tabla-horarios__fila:last-child {
+border-bottom: none;
+}
+
+.tabla-horarios__header div {
+padding: 1rem 0.5rem;
+font-weight: bold;
+background-color: rgba(0, 0, 0, 0.2);
+text-align: center;
+}
+
+.tabla-horarios__fila div {
+padding: 1rem 0.5rem;
+text-align: center;
+min-height: 40px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.tabla-horarios__fila div:first-child {
+font-weight: bold;
+background-color: rgba(0, 0, 0, 0.1);
+}
+
+.tabla-horarios__fila div:empty,
+.tabla-horarios__fila div:contains('-') {
+color: #777;
+}
+
+/* --- Estilos Modo Claro (Tabla Horarios) --- */
+body.modo-claro .horarios {
+/* background-color: var(--color-fondo); */ /* Hereda */
+color: var(--color-texto);
+}
+body.modo-claro .horarios h2 {
+color: var(--color-texto);
+}
+body.modo-claro .tabla-horarios {
+border-color: #ccc;
+background-color: #fff;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+body.modo-claro .tabla-horarios__header,
+body.modo-claro .tabla-horarios__fila {
+border-bottom-color: #eee;
+}
+body.modo-claro .tabla-horarios__header div {
+background-color: #f0f0f0;
+}
+body.modo-claro .tabla-horarios__fila div:first-child {
+background-color: #f8f8f8;
+}
+body.modo-claro .tabla-horarios__fila div:empty,
+body.modo-claro .tabla-horarios__fila div:contains('-') {
+color: #aaa;
+}
+
+
+/* --- Estilos Responsivos Tabla Horarios (Móvil) --- */
+@media (max-width: 768px) {
+.tabla-horarios {
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.tabla-horarios__header {
+  display: none;
+}
+
+.tabla-horarios__fila {
+  display: block;
+  border: 1px solid var(--color-secundario);
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  background-color: var(--color-secundario);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+body.modo-claro .tabla-horarios__fila {
+    border-color: #ccc;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.tabla-horarios__fila div {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8rem 1rem;
+  text-align: right;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  min-height: auto;
+}
+body.modo-claro .tabla-horarios__fila div {
+    border-bottom-color: #eee;
+}
+.tabla-horarios__fila div:last-child {
+    border-bottom: none;
+}
+
+.tabla-horarios__fila div:first-child {
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: var(--color-principal);
+  justify-content: center;
+  font-size: 1.2rem;
+  padding: 1rem;
+}
+body.modo-claro .tabla-horarios__fila div:first-child {
+    background-color: #e9e9e9;
+}
+
+
+.tabla-horarios__fila div[data-header]::before {
+  content: attr(data-header);
+  font-weight: bold;
+  margin-right: 1rem;
+  text-align: left;
+  color: var(--color-texto);
+}
+body.modo-claro .tabla-horarios__fila div[data-header]::before {
+    color: #555;
+}
+
+}
+
+/* --- Footer (Asegúrate que sea consistente con home.css) --- */
+/* Si copiaste el footer CSS a este archivo, iría aquí */
+/* Si usas home.css enlazado, no necesitas repetirlo */
+
+/* --- Media Queries Generales (Ajustar si es necesario) --- */
+@media (max-width: 992px) {
   header {
-    background: var(--color-secundario);
-    padding: 1rem 2rem;
-    position: sticky;
-    top: 0;
-    z-index: 999;
+      padding: 1rem 4rem 1rem 1.5rem;
   }
   .mega-menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .logo {
-    font-size: 1.8rem;
-    color: var(--color-principal);
+      max-width: 90%;
   }
   .menu {
-    list-style: none;
-    display: flex;
-    gap: 1.2rem;
+      gap: 1rem;
   }
-  .menu li {
-    position: relative;
+}
+
+@media (max-width: 768px) {
+  header {
+      padding: 1rem 3.5rem 1rem 1rem;
+  }
+  .logo {
+      font-size: 1.6rem;
+  }
+  .menu {
+      gap: 0.8rem;
   }
   .menu a {
-    color: var(--color-texto);
-    text-decoration: none;
-    padding: 0.5rem;
-    transition: color 0.3s;
+      font-size: 0.95rem;
   }
-  .menu a:hover {
-    color: var(--color-principal);
+  .contenido-clases, .horarios {
+      padding: 3rem 1.5rem;
   }
-  .submenu {
-    position: absolute;
-    top: 2.5rem;
-    background: var(--color-secundario);
-    padding: 0.5rem;
-    display: none;
-    flex-direction: column;
-    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  .contenido-clases h1, .horarios h2 {
+      font-size: 2.2rem; /* Títulos un poco más pequeños */
   }
-  .dropdown:hover .submenu {
-    display: flex;
+}
+
+@media (max-width: 600px) {
+  header {
+      padding: 0.8rem 3.5rem 0.8rem 1rem;
   }
-  
-  .contenido-clases {
-    padding: 3rem 2rem;
-    text-align: center;
+  .logo {
+      font-size: 1.5rem;
+  }
+  .menu {
+      gap: 0.5rem;
+  }
+  .menu a {
+      padding: 0.3rem;
+      font-size: 0.9rem;
   }
   .filtros {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
+      gap: 0.5rem; /* Menos espacio entre filtros */
   }
   .filtro {
-    padding: 0.6rem 1.2rem;
-    border: none;
-    background: #222;
-    color: var(--color-texto);
-    border-radius: 1rem;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
+      padding: 0.5rem 1rem; /* Filtros más pequeños */
+      font-size: 0.9rem;
   }
-  .filtro:hover,
-  .filtro.activo {
-    background: var(--color-principal);
-    transform: scale(1.05);
-  }
-  
   .grid-clases {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-  }
-  .clase-item {
-    background: #222;
-    padding: 1.5rem;
-    border-radius: 1rem;
-    transition: transform 0.3s, background 0.3s;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    cursor: pointer;
-  }
-  .clase-item:hover {
-    background: var(--color-principal);
-    transform: translateY(-5px);
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Ajustar minmax */
+      gap: 1rem; /* Menos espacio */
   }
   .clase-item h3 {
-    margin-top: 0;
-    font-size: 1.4rem;
-    color: var(--color-texto);
+      font-size: 1.3rem;
   }
   .clase-item p {
-    font-size: 0.95rem;
-    color: #ddd;
+      font-size: 0.9rem;
   }
-  
-  /* Ocultamiento dinámico (usado con JS) */
-  .clase-item.oculto {
-    display: none;
+}
+
+@media (max-width: 400px) {
+  .menu {
+      display: none; /* Ocultar menú normal */
   }
-  
+  /* Estilos para menú hamburguesa irían aquí */
+}
+

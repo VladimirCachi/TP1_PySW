@@ -3,28 +3,28 @@
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clases - Gimnasio X</title>
-    <link rel="stylesheet" href="css\clases.css">
+    <title>Clases - Gimnasio FitLife</title> <!-- Cambiado nombre -->
+    <!-- Enlaces CSS -->
+    <link rel="stylesheet" href="css/home.css"> <!-- Estilos comunes/footer -->
+    <link rel="stylesheet" href="css/clases.css"> <!-- Estilos específicos -->
     </head>
     <body>
     <header>
-        <div class="mega-menu">
-        <div class="logo">Gimnasio X</div>
-        <ul class="menu">
+        <!-- Asegúrate que el header sea consistente también -->
+        <button id="botonModo" class="boton-modo" aria-label="Cambiar modo">
+          🌙
+        </button>
+        <nav class="mega-menu">
+          <h1 class="logo">FitLife</h1> <!-- Mismo logo -->
+          <ul class="menu">
             <li><a href="index.html">Inicio</a></li>
-            <li class="dropdown">
-            <a href="#">Clases</a>
-            <ul class="submenu">
-                <li><a href="#">Cardio</a></li>
-                <li><a href="#">Fuerza</a></li>
-                <li><a href="#">Flexibilidad</a></li>
-            </ul>
-            </li>
+            <li><a href="clases.html" class="activo">Clases</a></li> <!-- Marcar como activo -->
             <li><a href="entrenadores.html">Entrenadores</a></li>
             <li><a href="precios.html">Precios</a></li>
+            <li><a href="blog.html">Blog</a></li>
             <li><a href="contacto.html">Contacto</a></li>
-        </ul>
-        </div>
+          </ul>
+        </nav>
     </header>
 
     <main class="contenido-clases">
@@ -38,27 +38,108 @@
 
         <section class="grid-clases">
         <article class="clase-item cardio">
+            <!-- Añadir imagen si quieres consistencia con index.html -->
+            <img src="assets/img/spinning.jpg" alt="Clase de Spinning">
             <h3>Spinning</h3>
             <p>Alta intensidad en bicicleta fija.</p>
         </article>
         <article class="clase-item fuerza">
+             <img src="assets/img/crossfit.jpg" alt="Clase de Crossfit">
             <h3>CrossFit</h3>
             <p>Entrenamiento funcional de fuerza.</p>
         </article>
         <article class="clase-item yoga">
+             <img src="assets/img/yoga.jpg" alt="Clase de Yoga">
             <h3>Yoga Flow</h3>
             <p>Mejora tu flexibilidad y respira profundo.</p>
         </article>
         <article class="clase-item fuerza">
-            <h3>Levantamiento Olímpico</h3>
+             <img src="assets/img/musculacion.jpg" alt="Clase de Levantamiento Olímpico"> <!-- Cambiar imagen si es diferente -->
+            <h3>Levantamiento</h3>
             <p>Técnica y potencia muscular.</p>
         </article>
         <article class="clase-item cardio">
+             <img src="assets/img/boxeofitness.jpg" alt="Clase de Boxeo Fitness"> <!-- Cambiar imagen si es diferente -->
             <h3>Boxeo Fitness</h3>
             <p>Golpes, cardio y coordinación.</p>
         </article>
         </section>
     </main>
-        <script src="js\clases.js"></script>
+
+    <section class="horarios">
+        <h2>Horarios Semanales</h2>
+        <div class="tabla-horarios">
+          <div class="tabla-horarios__header">
+            <div>Día</div>
+            <div>6:00</div>
+            <div>9:00</div>
+            <div>12:00</div>
+            <div>15:00</div>
+            <div>18:00</div>
+            <div>21:00</div>
+          </div>
+      
+          <div class="tabla-horarios__fila">
+            <div>Lunes</div>
+            <div data-header="6:00">Crossfit</div>
+            <div data-header="9:00">Yoga</div>
+            <div data-header="12:00">-</div>
+            <div data-header="15:00">Funcional</div>
+            <div data-header="18:00">Boxeo</div>
+            <div data-header="21:00">Zumba</div>
+          </div>
+          <div class="tabla-horarios__fila">
+            <div>Martes</div>
+            <div data-header="6:00">Funcional</div>
+            <div data-header="9:00">CrossFit</div>
+            <div data-header="12:00">-</div>
+            <div data-header="15:00">Stretching</div>
+            <div data-header="18:00">HIIT</div>
+            <div data-header="21:00">Zumba</div>
+          </div>
+          <div class="tabla-horarios__fila">
+            <div>Miércoles</div>
+            <div data-header="6:00">yoga</div>
+            <div data-header="9:00">CrossFit</div>
+            <div data-header="12:00">Funcional</div>
+            <div data-header="15:00">-</div>
+            <div data-header="18:00">Boxeo</div>
+            <div data-header="21:00">Zumba</div>
+          </div>
+          <!-- Agregá más días si querés -->
+        </div>
+      </section>
+
+    <!-- FOOTER PEGADO DE INDEX.HTML -->
+    <footer>
+        <form class="newsletter">
+          <label for="email-newsletter">Suscribite al newsletter:</label>
+          <input type="email" id="email-newsletter" placeholder="Tu correo" required>
+          <button type="submit">Suscribirme</button>
+        </form>
+        <div class="redes">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <img src="assets/img/instagram.png" alt="Instagram">
+          </a>
+          <a href="https://Facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <img src="assets/img/facebook.png" alt="Facebook">
+          </a>
+        </div>
+        <div class="mapa">
+          <iframe
+            title="Ubicación del Gimnasio"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-65.3%2C-24.2%2C-65.2%2C-24.1&layer=mapnik"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </footer>
+      <!-- Fin del Footer pegado -->
+
+      <!-- Scripts JS -->
+      <script src="js/home.js"></script> <!-- Si necesitas el modo oscuro o contador -->
+      <script src="js/clases.js"></script> <!-- Script específico de clases -->
     </body>
 </html>
