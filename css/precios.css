@@ -1,129 +1,460 @@
-/* precios.css */
+/* css/precios.css */
 
-:root {
-    --color-principal: #ff5e57;
-    --color-secundario: #1e1e2f;
-    --color-fondo: #111;
-    --color-texto: #fff;
-    --font-main: 'Segoe UI', sans-serif;
-    --color-destacado: #29293d;
-  }
-  
-  body {
-    margin: 0;
-    font-family: var(--font-main);
-    background-color: var(--color-fondo);
-    color: var(--color-texto);
-  }
-  
-  header {
-    background: var(--color-secundario);
-    padding: 1rem 2rem;
-    position: sticky;
-    top: 0;
-    z-index: 999;
-  }
-  
-  .mega-menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .logo {
-    font-size: 1.8rem;
-    color: var(--color-principal);
-  }
-  
-  .menu {
-    list-style: none;
-    display: flex;
-    gap: 1.2rem;
-  }
-  
-  .menu a {
-    color: var(--color-texto);
-    text-decoration: none;
-    padding: 0.5rem;
-    transition: color 0.3s;
-  }
-  
-  .menu a:hover,
-  .menu a.activo {
-    color: var(--color-principal);
-  }
-  
-  .planes {
-    padding: 3rem 2rem;
-    text-align: center;
-  }
-  
-  .planes h1 {
-    font-size: 2.5rem;
-    color: var(--color-principal);
-    margin-bottom: 2rem;
-  }
-  
+/* --- Estilos Base (Hereda variables y estilos generales de home.css) --- */
+/* Asegúrate que home.css esté enlazado ANTES que precios.css en el HTML */
+/* para que las variables (:root) y estilos base (body, header, footer) estén disponibles */
+
+/* --- Contenido Principal --- */
+.planes {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+.planes h1 {
+  font-size: 2.8rem;
+  margin-bottom: 3rem; /* Más espacio */
+  color: var(--color-principal);
+}
+
+/* Contenedor del Toggle y Tabla */
+.planes-container {
+  max-width: 1100px; /* Ancho máximo */
+  margin: 0 auto; /* Centrar */
+}
+
+/* --- Toggle Mensual/Anual --- */
+.toggle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2.5rem; /* Espacio antes de la tabla */
+  gap: 1rem;
+}
+.toggle-label {
+  font-weight: 500;
+  color: var(--color-texto);
+  transition: color 0.3s;
+}
+.ahorro {
+  font-size: 0.85em;
+  color: #4CAF50; /* Verde para el ahorro */
+  font-weight: bold;
+}
+
+/* Estilos del Switch (Checkbox oculto + Label estilizado) */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #555; /* Fondo del switch apagado */
+  transition: .4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+}
+input:checked + .slider {
+  background-color: var(--color-principal); /* Fondo del switch encendido */
+}
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--color-principal);
+}
+input:checked + .slider:before {
+  transform: translateX(26px); /* Mueve el círculo */
+}
+.slider.round {
+  border-radius: 34px;
+}
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* Cambiar color de labels según estado del toggle */
+/* Label 'Mensual' se atenúa cuando está en Anual */
+/* Selector corregido para mayor precisión */
+.toggle-container input#planToggle:checked ~ .toggle-label:first-of-type {
+  color: #777;
+}
+/* Label 'Anual' se atenúa cuando está en Mensual */
+.toggle-container input#planToggle:not(:checked) ~ .toggle-label:last-of-type {
+  color: #777;
+}
+
+
+/* --- Tabla de Planes --- */
+.tabla-planes {
+  display: grid;
+  /* 4 columnas: Beneficios + 3 Planes */
+  grid-template-columns: 1.2fr repeat(3, 1fr); /* Columna de beneficios más ancha */
+  gap: 1.5rem; /* Espacio entre columnas */
+  background-color: var(--color-secundario); /* Fondo base tabla */
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.columna {
+  background-color: #2a2a3a; /* Fondo de cada columna */
+  padding: 1.5rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición para hover */
+  position: relative; /* Para etiqueta destacado */
+}
+
+/* --- Efecto Hover --- */
+.columna:not(.encabezado):hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+}
+
+/* Columna Encabezado (Beneficios) */
+.columna.encabezado {
+  background: none; /* Sin fondo propio */
+  padding-top: 4rem; /* Alinear con títulos de planes */
+  box-shadow: none; /* Sin sombra */
+  border-radius: 0; /* Sin redondeo */
+}
+.columna.encabezado h2 {
+  visibility: hidden; /* Ocultar título "Beneficios" visualmente */
+  height: 0;
+  margin: 0;
+  padding: 0; /* Asegurar que no ocupe espacio */
+}
+.columna.encabezado ul {
+  list-style: none; /* Quitar viñetas */
+  padding: 0; /* Quitar padding por defecto */
+  margin: 0; /* Quitar margen por defecto */
+  text-align: left; /* Alinear beneficios a la izquierda */
+}
+.columna.encabezado li {
+  height: 3.5em; /* Misma altura que checks/crosses */
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  color: #ccc; /* Color beneficios */
+  position: relative; /* Para tooltip */
+  cursor: default; /* Cursor normal */
+  padding-left: 0; /* Asegurar que no haya padding izquierdo */
+}
+
+/* Columnas de Planes */
+.columna h2 {
+  font-size: 1.8rem;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: var(--color-principal);
+}
+.columna ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0; /* Espacio debajo de la lista */
+  flex-grow: 1; /* Ocupa espacio disponible */
+}
+.columna li {
+  height: 3.5em; /* Altura fija para alinear filas */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem; /* Tamaño de check/cross */
+}
+.check { color: #4CAF50; } /* Verde */
+.cross { color: #f44336; } /* Rojo */
+
+.precio {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-top: auto; /* Empuja el precio hacia abajo */
+  margin-bottom: 1.5rem;
+  color: var(--color-texto);
+  min-height: 1.6em; /* Espacio reservado */
+  position: relative; /* Para pseudo-elementos */
+  text-align: center; /* Centrar precio */
+}
+
+/* --- Lógica CSS para mostrar Precio Mensual/Anual --- */
+.precio::before { /* Usamos ::before para mostrar el precio */
+  content: attr(data-mensual); /* Por defecto muestra el mensual */
+  position: absolute;
+  left: 0;
+  right: 0;
+  /* La transición en content no es estándar, pero no molesta */
+  transition: opacity 0.3s ease-in-out;
+}
+/* Cuando el toggle está activo (anual), mostramos el anual */
+/* Selector corregido para asegurar que funcione */
+.planes-container input#planToggle:checked ~ .tabla-planes .precio::before {
+  content: attr(data-anual);
+}
+
+/* Botón de elegir plan */
+.boton-plan {
+  display: inline-block;
+  background-color: var(--color-principal);
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+  margin-top: 1rem; /* Espacio arriba */
+  align-self: center; /* Centrar botón horizontalmente */
+}
+.boton-plan:hover {
+  background-color: #b00000;
+  transform: scale(1.05);
+}
+
+/* Columna Destacada */
+.columna.destacado {
+  background-color: var(--color-principal); /* Fondo diferente */
+  color: #fff; /* Texto blanco */
+  transform: scale(1.05); /* Ligeramente más grande */
+  /* Definir variable RGB para el color principal si no existe */
+  /* box-shadow: 0 10px 30px rgba(var(--color-principal-rgb, 255, 94, 87), 0.4); */
+  /* Alternativa sin variable RGB: */
+  box-shadow: 0 10px 30px #ff5e5766;
+}
+.columna.destacado h2 {
+  color: #fff; /* Título blanco */
+}
+.columna.destacado .precio {
+  color: #fff; /* Precio blanco */
+}
+.columna.destacado .boton-plan {
+  background-color: #fff; /* Botón blanco */
+  color: var(--color-principal); /* Texto con color principal */
+}
+.columna.destacado .boton-plan:hover {
+  background-color: #eee;
+  transform: scale(1.05);
+}
+.etiqueta-destacado {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffc107; /* Amarillo */
+  color: #333;
+  padding: 5px 15px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  z-index: 2; /* Asegurar que esté sobre la columna */
+}
+
+
+/* --- Tooltips --- */
+.columna.encabezado li[data-tooltip] {
+  /* position: relative; ya está definido */
+  /* cursor: help; */ /* Cambiar cursor */
+}
+.columna.encabezado li[data-tooltip]::before,
+.columna.encabezado li[data-tooltip]::after {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease 0.1s, visibility 0.3s ease 0.1s; /* Añadido pequeño delay */
+  z-index: 10; /* Asegurar que esté por encima */
+  pointer-events: none; /* No interferir con el hover */
+}
+/* Estilo del cuadro del tooltip */
+.columna.encabezado li[data-tooltip]::before {
+  content: attr(data-tooltip);
+  bottom: 100%; /* Posición arriba del item */
+  margin-bottom: 10px; /* Espacio + tamaño del triángulo */
+  background-color: #333; /* Fondo tooltip */
+  color: #fff; /* Texto tooltip */
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  white-space: nowrap; /* Evitar que el texto se parta */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+/* Estilo del triángulo del tooltip */
+.columna.encabezado li[data-tooltip]::after {
+  content: '';
+  bottom: 100%; /* Posición arriba del item */
+  margin-bottom: 5px; /* Justo debajo del cuadro */
+  border: 5px solid transparent;
+  border-top-color: #333; /* Mismo color que el fondo del tooltip */
+}
+/* Mostrar tooltip en hover */
+.columna.encabezado li[data-tooltip]:hover::before,
+.columna.encabezado li[data-tooltip]:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/* --- Estilos Modo Claro --- */
+body.modo-claro .toggle-label {
+  color: var(--color-texto);
+}
+body.modo-claro .toggle-container input#planToggle:checked ~ .toggle-label:first-of-type,
+body.modo-claro .toggle-container input#planToggle:not(:checked) ~ .toggle-label:last-of-type {
+  color: #999; /* Atenuado más claro */
+}
+body.modo-claro .tabla-planes {
+  background-color: #f0f0f0; /* Fondo tabla claro */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+body.modo-claro .columna {
+  background-color: #fff; /* Fondo columna claro */
+}
+body.modo-claro .columna.encabezado {
+  background: none; /* Mantener sin fondo */
+}
+body.modo-claro .columna.encabezado li {
+  color: #555; /* Color beneficios modo claro */
+}
+body.modo-claro .precio {
+  color: var(--color-texto); /* Precio oscuro */
+}
+body.modo-claro .columna.destacado {
+  background-color: var(--color-principal);
+  color: #fff;
+  /* Ajustar sombra si es necesario */
+  /* box-shadow: 0 10px 30px rgba(var(--color-principal-rgb, 214, 0, 0), 0.3); */
+  box-shadow: 0 10px 30px #d600004d; /* Sombra modo claro */
+}
+body.modo-claro .columna.destacado h2,
+body.modo-claro .columna.destacado .precio {
+  color: #fff;
+}
+body.modo-claro .columna.destacado .boton-plan {
+  background-color: #fff;
+  color: var(--color-principal);
+}
+body.modo-claro .columna.encabezado li[data-tooltip]::before {
+  background-color: #444; /* Tooltip oscuro */
+  color: #fff;
+}
+body.modo-claro .columna.encabezado li[data-tooltip]::after {
+  border-top-color: #444;
+}
+
+
+/* --- Media Queries (Responsividad) --- */
+@media (max-width: 992px) {
+  /* Hacer la tabla scrollable horizontalmente */
   .tabla-planes {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    max-width: 1100px;
-    margin: 0 auto;
+      display: block; /* Quitar grid */
+      width: 100%;
+      overflow-x: auto; /* Permitir scroll horizontal */
+      white-space: nowrap; /* Evitar que las columnas se rompan */
+      padding: 1rem;
+      background: none; /* Quitar fondo general */
+      box-shadow: none;
+      border-radius: 0; /* Quitar redondeo general */
+      -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
   }
-  
   .columna {
-    background: #222;
-    border-radius: 1rem;
-    padding: 2rem 1rem;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    transition: transform 0.3s ease;
+      display: inline-block; /* Poner columnas en línea */
+      width: 280px; /* Ancho fijo para cada columna */
+      white-space: normal; /* Permitir que el texto interno se ajuste */
+      vertical-align: top; /* Alinear arriba */
+      margin-right: 1rem; /* Espacio entre columnas */
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Devolver sombra */
+      border-radius: 8px; /* Devolver redondeo */
   }
-  
-  .columna:hover {
-    transform: translateY(-5px);
+  .columna:last-child {
+      margin-right: 0;
   }
-  
+  .columna.encabezado {
+      width: 200px; /* Ancho fijo para beneficios */
+      background-color: #2a2a3a; /* Devolver fondo */
+      padding-top: 1.5rem; /* Ajustar padding */
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Sombra también */
+  }
+  body.modo-claro .columna {
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  body.modo-claro .columna.encabezado {
+      background-color: #fff;
+  }
+  /* Ajustar columna destacada en scroll */
+  .columna.destacado {
+      transform: scale(1); /* Quitar escala inicial */
+  }
+  .columna.destacado:hover {
+      transform: translateY(-10px) scale(1.02); /* Mantener hover */
+  }
+
+}
+
+@media (max-width: 600px) {
+  .planes h1 {
+      font-size: 2.2rem;
+  }
+  .toggle-container {
+      flex-direction: column; /* Apilar toggle en móvil */
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+  }
+  .tabla-planes {
+      padding: 0.5rem; /* Menos padding */
+  }
+  .columna {
+      width: 250px; /* Columnas un poco más estrechas */
+      padding: 1rem;
+      margin-right: 0.8rem;
+  }
+  .columna.encabezado {
+      width: 180px;
+      padding: 1rem;
+  }
   .columna h2 {
-    color: var(--color-principal);
-    margin-bottom: 1rem;
+      font-size: 1.5rem;
   }
-  
-  .columna ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 1rem;
-  }
-  
-  .columna ul li {
-    padding: 0.5rem 0;
-    font-size: 1rem;
-    border-bottom: 1px solid #333;
-  }
-  
   .precio {
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: #4caf50;
-    margin-top: 1rem;
+      font-size: 1.4rem;
   }
-  
-  .destacado {
-    background: var(--color-destacado);
-    border: 2px solid var(--color-principal);
+  .boton-plan {
+      padding: 8px 16px;
+      font-size: 0.9rem;
   }
-  
-  footer {
-    background: var(--color-secundario);
-    color: var(--color-texto);
-    padding: 1.5rem;
-    text-align: center;
-    margin-top: 3rem;
+  .columna.encabezado li {
+      height: 3em; /* Reducir altura filas */
+      font-size: 0.9rem;
   }
-  
-  @media (max-width: 768px) {
-    .tabla-planes {
-      grid-template-columns: 1fr;
-    }
+  .columna li {
+      height: 3em;
+      font-size: 1.3rem;
   }
-  
+  /* Ajustar tooltip en móvil */
+  .columna.encabezado li[data-tooltip]::before {
+      white-space: normal; /* Permitir que el texto se parta */
+      width: 150px; /* Ancho máximo tooltip */
+      left: 10px; /* Alinear cerca del borde izquierdo */
+      transform: none; /* Quitar transform */
+      font-size: 0.8rem; /* Texto tooltip más pequeño */
+  }
+  .columna.encabezado li[data-tooltip]::after {
+      left: 25px; /* Ajustar posición del triángulo */
+      transform: none;
+  }
+}

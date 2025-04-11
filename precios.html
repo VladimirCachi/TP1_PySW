@@ -3,74 +3,130 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Planes - Gym Elite</title>
-  <link rel="stylesheet" href="css/precios.css" />
+  <title>Planes y Precios - FitLife</title> <!-- Título actualizado -->
+  <link rel="stylesheet" href="css/home.css"> <!-- Estilos comunes -->
+  <link rel="stylesheet" href="css/precios.css" /> <!-- Estilos específicos -->
 </head>
 <body>
   <header>
-    <div class="mega-menu">
-      <div class="logo">Gym Elite</div>
+    <button id="botonModo" class="boton-modo" aria-label="Cambiar modo">
+      🌙
+    </button>
+    <nav class="mega-menu">
+      <h1 class="logo">FitLife</h1>
       <ul class="menu">
         <li><a href="index.html">Inicio</a></li>
         <li><a href="clases.html">Clases</a></li>
         <li><a href="entrenadores.html">Entrenadores</a></li>
+        <li><a href="precios.html" class="activo">Precios</a></li> <!-- Marcar como activo -->
+        <li><a href="blog.html">Blog</a></li>
         <li><a href="contacto.html">Contacto</a></li>
-        <li><a class="activo" href="precios.html">Precios</a></li>
       </ul>
-    </div>
+    </nav>
   </header>
 
   <main class="planes">
     <h1>Compará nuestros planes</h1>
-    <div class="tabla-planes">
-      <div class="columna encabezado">
-        <h2>Beneficios</h2>
-        <ul>
-          <li>Acceso ilimitado</li>
-          <li>Clases grupales</li>
-          <li>Entrenador personal</li>
-          <li>Nutricionista</li>
-          <li>App móvil</li>
-        </ul>
+
+    <!-- Contenedor para el toggle y la tabla -->
+    <div class="planes-container">
+
+      <!-- Toggle Mensual/Anual -->
+      <div class="toggle-container">
+        <span class="toggle-label">Mensual</span>
+        <label class="switch">
+          <input type="checkbox" id="planToggle">
+          <span class="slider round"></span>
+        </label>
+        <span class="toggle-label">Anual <span class="ahorro">(Ahorra 15%)</span></span>
       </div>
-      <div class="columna">
-        <h2>Plan Básico</h2>
-        <ul>
-          <li>✅</li>
-          <li>✅</li>
-          <li>❌</li>
-          <li>❌</li>
-          <li>❌</li>
-        </ul>
-        <p class="precio">$4.500 / mes</p>
-      </div>
-      <div class="columna destacado">
-        <h2>Plan Premium</h2>
-        <ul>
-          <li>✅</li>
-          <li>✅</li>
-          <li>✅</li>
-          <li>✅</li>
-          <li>✅</li>
-        </ul>
-        <p class="precio">$8.500 / mes</p>
-      </div>
-      <div class="columna">
-        <h2>Plan Intermedio</h2>
-        <ul>
-          <li>✅</li>
-          <li>✅</li>
-          <li>✅</li>
-          <li>❌</li>
-          <li>✅</li>
-        </ul>
-        <p class="precio">$6.500 / mes</p>
+
+      <!-- Tabla de Planes -->
+      <div class="tabla-planes">
+        <div class="columna encabezado">
+          <h2>Beneficios</h2>
+          <ul>
+            <li data-tooltip="Acceso completo al gimnasio durante el horario de apertura.">Acceso ilimitado</li>
+            <li data-tooltip="Participación en todas las clases grupales programadas (Yoga, Spinning, etc.).">Clases grupales</li>
+            <li data-tooltip="Sesiones individuales con un entrenador para un plan personalizado.">Entrenador personal</li>
+            <li data-tooltip="Asesoramiento nutricional adaptado a tus objetivos de fitness.">Nutricionista</li>
+            <li data-tooltip="Acceso a nuestra app para seguimiento de progreso y reservas.">App móvil</li>
+          </ul>
+        </div>
+        <div class="columna plan-basico"> <!-- Clase específica para identificar -->
+          <h2>Plan Básico</h2>
+          <ul>
+            <li><span class="check">✅</span></li>
+            <li><span class="check">✅</span></li>
+            <li><span class="cross">❌</span></li>
+            <li><span class="cross">❌</span></li>
+            <li><span class="cross">❌</span></li>
+          </ul>
+          <p class="precio" data-mensual="$4.500 / mes" data-anual="$45.900 / año">
+            <!-- El texto se generará con CSS -->
+          </p>
+          <a href="contacto.html?plan=basico" class="boton-plan">Elegir Plan</a>
+        </div>
+        <div class="columna destacado plan-premium"> <!-- Clase específica y destacado -->
+          <span class="etiqueta-destacado">Más Popular</span>
+          <h2>Plan Premium</h2>
+          <ul>
+            <li><span class="check">✅</span></li>
+            <li><span class="check">✅</span></li>
+            <li><span class="check">✅</span></li>
+            <li><span class="check">✅</span></li>
+            <li><span class="check">✅</span></li>
+          </ul>
+          <p class="precio" data-mensual="$8.500 / mes" data-anual="$86.700 / año">
+            <!-- El texto se generará con CSS -->
+          </p>
+          <a href="contacto.html?plan=premium" class="boton-plan">Elegir Plan</a>
+        </div>
+        <div class="columna plan-intermedio"> <!-- Clase específica -->
+          <h2>Plan Intermedio</h2>
+          <ul>
+            <li><span class="check">✅</span></li>
+            <li><span class="check">✅</span></li>
+            <li><span class="check">✅</span></li>
+            <li><span class="cross">❌</span></li>
+            <li><span class="check">✅</span></li>
+          </ul>
+          <p class="precio" data-mensual="$6.500 / mes" data-anual="$66.300 / año">
+            <!-- El texto se generará con CSS -->
+          </p>
+          <a href="contacto.html?plan=intermedio" class="boton-plan">Elegir Plan</a>
+        </div>
       </div>
     </div>
   </main>
 
+  <!-- FOOTER (Asegúrate que sea el mismo que en index.html) -->
   <footer>
-    &copy; 2025 Gym Elite. Todos los derechos reservados.
+    <form class="newsletter">
+      <label for="email-newsletter">Suscribite al newsletter:</label>
+      <input type="email" id="email-newsletter" placeholder="Tu correo" required>
+      <button type="submit">Suscribirme</button>
+    </form>
+    <div class="redes">
+      <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <img src="assets/img/instagram.png" alt="Instagram">
+      </a>
+      <a href="https://Facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <img src="assets/img/facebook.png" alt="Facebook">
+      </a>
+    </div>
+    <div class="mapa">
+      <iframe
+        title="Ubicación del Gimnasio"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=-65.3%2C-24.2%2C-65.2%2C-24.1&layer=mapnik"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
   </footer>
+  <script src="js/home.js"></script> <!-- Para modo oscuro si lo usas -->
+  <!-- No se necesita JS específico para precios.js con este enfoque CSS -->
 </body>
 </html>
