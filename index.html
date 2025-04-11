@@ -9,21 +9,14 @@
 <body>
   <!-- HEADER CON MEGA-MENÚ -->
   <header>
-    <button class="boton-modo" onclick="document.body.classList.toggle('modo-claro')">
-      Cambiar modo
-    </button>    
+    <button id="botonModo" class="boton-modo" aria-label="Cambiar modo">
+      🌙
+    </button>
     <nav class="mega-menu">
       <h1 class="logo">FitLife</h1>
       <ul class="menu">
-        <li><a href="index.html">Inicio</a></li>
-        <li class="dropdown">
-          <a href="clases.html">Clases</a>
-          <ul class="submenu">
-            <li><a href="clases.html">Ver todas</a></li>
-            <li><a href="#">Musculación</a></li>
-            <li><a href="#">Yoga</a></li>
-          </ul>
-        </li>
+        <li><a href="index.html" class="activo">Inicio</a></li> <!-- Añadida clase activo -->
+        <li><a href="clases.html">Clases</a></li>
         <li><a href="entrenadores.html">Entrenadores</a></li>
         <li><a href="precios.html">Precios</a></li>
         <li><a href="blog.html">Blog</a></li>
@@ -35,84 +28,117 @@
   <!-- HERO CON VIDEO DE FONDO -->
   <section class="hero">
     <video autoplay muted loop class="hero-video">
-      <source src="assets/videos/entrenamiento.mp4" type="video/mp4">
+      <!-- Asegúrate que la ruta al video sea correcta -->
+      <source src="assets/videos/1DX Mark III - Cinematic Gym Fitness Video.mp4" type="video/mp4">
+      Tu navegador no soporta videos HTML5.
     </video>
     <div class="overlay">
-      <h2 class="hero-text">Entrena fuerte, vive mejor</h2>
+      <h2 class="hero-text">Entrena fuerte, vive mejor y alcanza tu mejor version</h2>
+      <a href="contacto.html" class="boton-hero">¡Únete ahora!</a>
     </div>
   </section>
 
-  <!-- CLASES DESTACADAS -->
-  <section class="clases">
-    <h2>Clases Destacadas</h2>
-    <div class="cards">
-      <div class="card">Musculación</div>
-      <div class="card">Yoga</div>
-      <div class="card">Spinning</div>
-    </div>
-  </section>
-
-  <!-- CONTADOR ANIMADO -->
-  <section class="contador">
-    <h2><span class="numero">500+</span> socios satisfechos</h2>
-  </section>
-
-
-  <!-- TESTIMONIOS -->
-    <h2>Lo que dicen nuestros clientes</h2>
-  
-    <div class="carrusel-testimonios">
-      <div class="slide-track">
-        <div class="testimonio">
-          <p>“¡Entreno acá hace 6 meses y me siento increíble!”</p>
-          <span>- Carla M.</span>
+    <!-- CLASES DESTACADAS -->
+    <section class="clases">
+      <h2>Clases Destacadas</h2>
+      <div class="cards">
+        <div class="card">
+          <img src="assets/img/musculacion.jpg" alt="Clase de musculación"> <!-- Alt descriptivo -->
+          <h3>Musculación</h3>
+          <p>Entrenamiento de fuerza para mejorar tu masa muscular y rendimiento.</p>
         </div>
-        <div class="testimonio">
-          <p>“Entrenadores súper atentos y profesionales.”</p>
-          <span>- Luis F.</span>
+        <div class="card">
+          <img src="assets/img/crossfit.jpg" alt="Clase de Crossfit"> <!-- Alt descriptivo -->
+          <h3>Crossfit</h3>
+          <p>Rutinas intensas que combinan levantamiento, cardio y funcional.</p>
         </div>
-        <div class="testimonio">
-          <p>“El ambiente es lo mejor, me motiva cada día.”</p>
-          <span>- Ana G.</span>
+        <div class="card">
+          <img src="assets/img/yoga.jpg" alt="Clase de Yoga"> <!-- Alt descriptivo -->
+          <h3>Yoga</h3>
+          <p>Una práctica para mejorar tu flexibilidad, concentración y equilibrio.</p>
         </div>
-        <!-- Copia para loop infinito -->
-        <div class="testimonio">
-          <p>“¡Entreno acá hace 6 meses y me siento increíble!”</p>
-          <span>- Carla M.</span>
-        </div>
-        <div class="testimonio">
-          <p>“Entrenadores súper atentos y profesionales.”</p>
-          <span>- Luis F.</span>
-        </div>
-        <div class="testimonio">
-          <p>“El ambiente es lo mejor, me motiva cada día.”</p>
-          <span>- Ana G.</span>
+        <div class="card">
+          <img src="assets/img/spinning.jpg" alt="Clase de Spinning"> <!-- Alt descriptivo -->
+          <h3>Spinning</h3>
+          <p>Ideal para quemar calorías, fortalecer piernas y mejorar tu estado cardiovascular.</p>
         </div>
       </div>
-  
-      <!-- Flechas (simuladas con pseudo-elementos si querés sin JS) -->
-      <div class="flechas">
-        <div class="izquierda"></div>
-        <div class="derecha"></div>
-      </div>
-    </div>
-  </section>
-    
+    </section>
 
+    <!-- CONTADOR ANIMADO -->
+    <section class="contador">
+      <!-- Añadido id="contadorNumero" y quitado el "+" -->
+      <h2><span class="numero" id="contadorNumero">0</span> socios satisfechos</h2>
+    </section>
+  
+    <!-- TESTIMONIOS -->
+    <section class="testimonios-seccion">
+      <h2>Lo que dicen nuestros clientes</h2>
+
+      <div class="carrusel-testimonios">
+        <div class="slide-track">
+          <!-- Testimonios originales -->
+          <div class="testimonio">
+            <p>“¡Entreno acá hace 6 meses y me siento increíble!”</p>
+            <span>- Meg Vicious.</span>
+          </div>
+          <div class="testimonio">
+            <p>“Entrenadores súper atentos y profesionales.”</p>
+            <span>- Cam Nair</span>
+          </div>
+          <div class="testimonio">
+            <p>“El ambiente es lo mejor, me motiva cada día.”</p>
+            <span>- Baby Dole</span>
+          </div>
+          <div class="testimonio">
+            <p>“¡Las mejores maquinas y los mejores profesores!”</p>
+            <span>- Malena M.</span>
+          </div>
+          <div class="testimonio">
+            <p>“Las mejores minas con terrible culo como Ema Fiore.”</p>
+            <span>- Axel Ayala Jara</span>
+          </div>
+          <div class="testimonio">
+            <p>“Mejore mi fisico con solo ir 3 veces al gimnasio.”</p>
+            <span>- Maria Abalo</span>
+          </div>
+          <!-- Clones añadidos por JS -->
+        </div>
+
+        <!-- Flechas como botones -->
+        <div class="flechas">
+          <button class="flecha izquierda" aria-label="Testimonio anterior">&lt;</button>
+          <button class="flecha derecha" aria-label="Testimonio siguiente">&gt;</button>
+        </div>
+      </div>
+    </section>
   <!-- FOOTER -->
   <footer>
     <form class="newsletter">
-      <label>Suscribite al newsletter:</label>
-      <input type="email" placeholder="Tu correo">
-      <button>Suscribirme</button>
+      <label for="email-newsletter">Suscribite al newsletter:</label>
+      <input type="email" id="email-newsletter" placeholder="Tu correo" required>
+      <button type="submit">Suscribirme</button>
     </form>
     <div class="redes">
-      <a href="#">Instagram</a>
-      <a href="#">Facebook</a>
+      <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"> <!-- Buenas prácticas para enlaces externos -->
+        <img src="assets/img/instagram.png" alt="Instagram">
+      </a>
+      <a href="https://Facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook"> <!-- Buenas prácticas para enlaces externos -->
+        <img src="assets/img/facebook.png" alt="Facebook">
+      </a>
     </div>
     <div class="mapa">
-      <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-65.3%2C-24.2%2C-65.2%2C-24.1" width="300" height="200"></iframe>
+      <iframe
+        title="Ubicación del Gimnasio"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=-65.3%2C-24.2%2C-65.2%2C-24.1&layer=mapnik"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+        <!-- Quitados width y height fijos para hacerlos responsivos con CSS -->
+      </iframe>
     </div>
   </footer>
+  <script src="js/home.js"></script> <!-- Añadido script para el contador -->
 </body>
 </html>
