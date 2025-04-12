@@ -1,60 +1,388 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Blog de Fitness - Gym Elite</title>
-  <link rel="stylesheet" href="css/blog.css" />
-</head>
-<body>
-  <header>
-    <div class="mega-menu">
-      <div class="logo">Gym Elite</div>
-      <ul class="menu">
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="clases.html">Clases</a></li>
-        <li><a href="entrenadores.html">Entrenadores</a></li>
-        <li><a href="contacto.html">Contacto</a></li>
-        <li><a href="precios.html">Precios</a></li>
-        <li><a class="activo" href="blog.html">Blog</a></li>
-      </ul>
-    </div>
-  </header>
+<html lang="es"> 
 
-  <main class="seccion-blog">
-    <h1>Fitness & Salud: Tips, rutinas y más</h1>
-    <div class="grid-blog">
-      <article class="tarjeta-blog">
-        <img src="img/blog1.jpg" alt="Rutinas de fuerza">
-        <div class="contenido-blog">
-          <h3>5 Rutinas de fuerza para principiantes</h3>
-          <p>Descubrí cómo empezar con el entrenamiento de fuerza sin lesionarte y viendo resultados reales.</p>
-          <a href="#">Leer más</a>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="/media/icon.png" type="image/png">
+        <title>FitLife</title>
+        <link rel="stylesheet" href="css/blog.css">
+        <link rel="stylesheet" href="css/home.css"> <!-- Cambiado a la ruta correcta -->
+    </head>
+    
+    <body>
+      <header>
+        <button id="botonModo" class="boton-modo" aria-label="Cambiar modo">
+          🌙
+        </button>
+        <nav class="mega-menu">
+          <h1 class="logo">FitLife</h1>
+          <ul class="menu">
+            <li><a href="index.html" class="activo">Inicio</a></li> <!-- Añadida clase activo -->
+            <li><a href="clases.html">Clases</a></li>
+            <li><a href="entrenadores.html">Entrenadores</a></li>
+            <li><a href="precios.html">Precios</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+      </header>
+      <section class="filters">
+        <h2>Explora Contenido</h2>
+        <div class="filter-controls">
+            <input type="radio" name="category-filter" id="filter-todos" checked>
+            <label for="filter-todos">Todos</label>
+
+            <input type="radio" name="category-filter" id="filter-entrenamiento">
+            <label for="filter-entrenamiento">Entrenamiento</label>
+
+            <input type="radio" name="category-filter" id="filter-nutricion">
+            <label for="filter-nutricion">Nutrición</label>
+
+            <input type="radio" name="category-filter" id="filter-bienestar">
+            <label for="filter-bienestar">Bienestar</label>
         </div>
-      </article>
+    </section>
 
-      <article class="tarjeta-blog">
-        <img src="img/blog2.jpg" alt="Alimentación saludable">
-        <div class="contenido-blog">
-          <h3>Alimentación balanceada para entrenar mejor</h3>
-          <p>Conocé los mejores alimentos para tener energía durante tus entrenamientos y recuperarte rápido.</p>
-          <a href="#">Leer más</a>
-        </div>
-      </article>
+    <main class="articles-grid">
+        <article class="article-card category-entrenamiento reveal-item">
+            <img src="assets/img/rutina_piernas.webp" alt="Artículo sobre entrenamiento">
+            <div class="card-content">
+                <span class="tag tag-entrenamiento">Entrenamiento</span>
+                <h3>La rutina de piernas para ganar músculo.</h3>
+                <p>Empieza tu viaje fitness con esta rutina completa diseñada para activar todos tus músculos.</p>
+                <a href="https://www.vitonica.com/entrenamiento/rutina-completa-para-entrenar-tus-piernas-gimnasio" class="read-more">Leer más</a>
+            </div>
+        </article>
 
-      <article class="tarjeta-blog">
-        <img src="img/blog3.jpg" alt="Descanso">
-        <div class="contenido-blog">
-          <h3>¿Por qué el descanso es clave en tu progreso?</h3>
-          <p>Te explicamos cómo el sueño y la recuperación son igual de importantes que el ejercicio mismo.</p>
-          <a href="#">Leer más</a>
-        </div>
-      </article>
-    </div>
-  </main>
+        <article class="article-card category-nutricion reveal-item featured">
+            <img src="assets\img\perdida de cabello.webp" alt="Artículo destacado sobre nutrición">
+             <div class="card-content">
+                <span class="tag tag-nutricion">Nutrición</span>
+                <h3>Todo el mundo habla maravillas del ayuno intermitente pero hay una cosa que nadie te cuenta: afecta a tu pelo.</h3>
+                <p>Como todo, el ayuno intermitente también tiene su cara B y puede no ser apto para todos</p>
+                <a href="https://www.vitonica.com/dietas/nos-contaron-muchas-ventajas-ayuno-intermitente-se-les-olvido-pequeno-detalle-puede-dejarnos-calvos" class="read-more">Leer más</a>
+            </div>
+        </article>
 
-  <footer>
-    &copy; 2025 Gym Elite. Todos los derechos reservados.
-  </footer>
+        <article class="article-card category-bienestar reveal-item">
+            <img src="assets\img\insomnio.webp" alt="Artículo sobre Bienestar">
+             <div class="card-content">
+                <span class="tag tag-bienestar">Bienestar</span>
+                <h3>Lo que nunca debes hacer cuando no puedes dormir, según los expertos en sueño</h3>
+                <p>Muchas personas tienen comportamientos cuando no pueden dormir que aumentan aún más el insomnio</p>
+                <a href="https://www.vitonica.com/wellness/que-nunca-debes-hacer-cuando-no-puedes-dormir-expertos-sueno" class="read-more">Leer más</a>
+            </div>
+        </article>
+
+        <article class="article-card category-entrenamiento reveal-item">
+            <img src="assets\img\rutina_brazos.webp" alt="Artículo sobre Cardio">
+             <div class="card-content">
+                <span class="tag tag-entrenamiento">Entrenamiento</span>
+                <h3>La rutina de brazos para ganar músculo.</h3>
+                <p>Una rutina para entrenar tus brazos al completo en el gimnasio.</p>
+                <a href="https://www.vitonica.com/entrenamiento/rutina-para-entrenar-tus-brazos-al-completo-gimnasio" class="read-more">Leer más</a>
+            </div>
+        </article>
+        <article class="article-card category-bienestar reveal-item">
+            <img src="assets\img\tatuajes.webp" alt="Artículo sobre Bienestar">
+             <div class="card-content">
+                <span class="tag tag-bienestar">Bienestar</span>
+                <h3>Tatuajes y cáncer: la desconocida asociación que cada vez cuenta con más evidencia científica.</h3>
+                <p>¿Pueden los tatuajes aumentar el riesgo de cáncer? Esto dice la ciencia más reciente.</p>
+                <a href="https://www.vitonica.com/wellness/tatuajes-cancer-asociacion-desconocida-que-cada-vez-cuenta-evidencia-cientifica" class="read-more">Leer más</a>
+            </div>
+        </article>
+         <article class="article-card category-nutricion reveal-item">
+            <img src="assets\img\lata_pescado.webp" alt="Artículo sobre Recetas Saludables">
+             <div class="card-content">
+                <span class="tag tag-nutricion">Nutrición</span>
+                <h3>Luis Zamora, nutricionista: "el pescado en conserva es saludable, pero no podemos sólo comer pescado de lata".</h3>
+                <p>Tienen más sal que el pescado fresco y pueden también tener más grasas y otros añadidos poco sanos.</p>
+                <a href="https://www.vitonica.com/alimentos/luis-zamora-nutricionista-pescado-conserva-saludable-no-podemos-solo-comer-pescado-lata" class="read-more">Leer más</a>
+            </div>
+        </article>
+        <article class="article-card category-entrenamiento reveal-item">
+            <img src="assets\img\press_banca.webp" alt="Artículo sobre Recetas Saludables">
+             <div class="card-content">
+                <span class="tag tag-entrenamiento">Entrenamiento</span>
+                <h3>Los mejores ejercicios para destruir tus marcas en el press de banca.</h3>
+                <p>El press de banca es el ejercicio estrella para medir la fuerza de empuje del tren superior</p>
+                <a href="https://www.vitonica.com/entrenamiento/mejores-ejercicios-para-destruir-tus-marcas-press-banca-ninguno-pecho" class="read-more">Leer más</a>
+            </div>
+        </article>
+        <article class="article-card category-bienestar reveal-item">
+            <img src="assets\img\bebidas.webp" alt="Artículo sobre Bienestar">
+             <div class="card-content">
+                <span class="tag tag-bienestar">Bienestar</span>
+                <h3>Muchas personas toman una copita antes de dormir para conciliar el sueño, pero no conocen sus verdaderas consecuencias.</h3>
+                <p>Puede elevar la frecuencia cardíaca y por ello, tener severas consecuencias sobre el descanso.</p>
+                <a href="https://www.vitonica.com/prevencion/copita-antes-dormir-para-conciliar-sueno-tiene-precio-muy-alto-va-alla-calorias-vacias" class="read-more">Leer más</a>
+            </div>
+        </article>
+
+    </main> <section class="comments-section">
+        <h2>Comentarios Recientes</h2>
+
+        <div id="comments-list">
+            <div class="comment">
+                <div class="comment-avatar" data-initials="AF"></div>
+                <div class="comment-content">
+                    <p class="comment-author">Ana Fernández</p>
+                    <p class="comment-text">¡Excelente artículo sobre mindfulness! Justo lo que necesitaba.</p>
+                </div>
+            </div>
+
+            <div class="comment">
+                <div class="comment-avatar" data-initials="CG"></div>
+                <div class="comment-content">
+                    <p class="comment-author">Carlos Gómez</p>
+                    <p class="comment-text">La rutina full body es genial para empezar. ¿Alguna recomendación para avanzar?</p>
+                </div>
+            </div>
+
+             <div class="comment">
+                <div class="comment-avatar" data-initials="LM"></div>
+                <div class="comment-content">
+                    <p class="comment-author">Laura Martínez</p>
+                    <p class="comment-text">Me encantaron las ideas de batidos, ¡el de frutos rojos es mi favorito!</p>
+                </div>
+            </div>
+        </div> <form class="comment-form" id="comment-form">
+            <h3>Deja tu comentario</h3>
+
+            <label for="comment-name" class="sr-only">Tu nombre</label>
+            <input type="text" id="comment-name" placeholder="Tu nombre" required>
+
+            <label for="comment-text" class="sr-only">Tu comentario</label>
+            <textarea id="comment-text" placeholder="Tu comentario" rows="4" required></textarea>
+
+            <button type="submit">Enviar Comentario</button>
+        </form>
+    </section>
+
+
+    <footer>
+      <form class="newsletter">
+        <label for="email-newsletter">Suscribite al newsletter:</label>
+        <input type="email" id="email-newsletter" placeholder="Tu correo" required>
+        <button type="submit">Suscribirme</button>
+      </form>
+      <div class="redes">
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"> <!-- Buenas prácticas para enlaces externos -->
+          <img src="assets/img/instagram.png" alt="Instagram">
+        </a>
+        <a href="https://Facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook"> <!-- Buenas prácticas para enlaces externos -->
+          <img src="assets/img/facebook.png" alt="Facebook">
+        </a>
+      </div>
+      <div class="mapa">
+        <iframe
+          title="Ubicación del Gimnasio"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-65.3%2C-24.2%2C-65.2%2C-24.1&layer=mapnik"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+          <!-- Quitados width y height fijos para hacerlos responsivos con CSS -->
+        </iframe>
+      </div>
+    </footer>
+    <script src="js/home.js"></script>
+    <script>
+        const currentYearSpan = document.getElementById('current-year');
+        if (currentYearSpan) {
+             currentYearSpan.textContent = new Date().getFullYear();
+        }
+
+        const revealItems = document.querySelectorAll('.reveal-item');
+        if (revealItems.length > 0) {
+            const revealOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+            const revealCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            };
+            const observer = new IntersectionObserver(revealCallback, revealOptions);
+            revealItems.forEach(item => observer.observe(item));
+        }
+    </script>
+
+    <script>
+        const filterControls = document.querySelector('.filter-controls');
+        const articles = document.querySelectorAll('.articles-grid .article-card');
+
+        if (filterControls && articles.length > 0) {
+            filterControls.addEventListener('change', (event) => {
+                if (event.target.type === 'radio' && event.target.name === 'category-filter') {
+                    const selectedCategory = event.target.id;
+                    articles.forEach(article => {
+                        const articleCategories = article.classList;
+                        const isFeatured = article.classList.contains('featured'); // Para mantener el display del featured
+
+                        if (selectedCategory === 'filter-todos') {
+                            article.style.display = 'flex';
+                        } else {
+                            const targetCategoryClass = 'category-' + selectedCategory.split('-')[1];
+                            if (articleCategories.contains(targetCategoryClass)) {
+                                article.style.display = 'flex';
+                            } else {
+                                article.style.display = 'none';
+                            }
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const mainMenu = document.getElementById('main-menu');
+
+        if (menuToggle && mainMenu) {
+            menuToggle.addEventListener('click', () => {
+                mainMenu.classList.toggle('open');
+                const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+                menuToggle.setAttribute('aria-expanded', !expanded);
+            });
+
+            document.querySelectorAll('.mega-menu .has-submenu > a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        if (!e.target.closest('.menu-desplegable')) {
+                             e.preventDefault();
+                             const li = link.parentElement;
+                             li.classList.toggle('show-submenu');
+                        }
+                    }
+                 });
+             });
+        }
+    </script>
+
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        if (themeToggleBtn) {
+            const currentTheme = localStorage.getItem('theme');
+            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+            function applyTheme(theme) {
+                if (theme === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
+                     themeToggleBtn.querySelector('.fa-sun').style.display = 'none';
+                     themeToggleBtn.querySelector('.fa-moon').style.display = 'inline';
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                    localStorage.setItem('theme', 'light');
+                    themeToggleBtn.querySelector('.fa-sun').style.display = 'inline';
+                    themeToggleBtn.querySelector('.fa-moon').style.display = 'none';
+                }
+            }
+
+            let initialTheme = 'light';
+             if (currentTheme) {
+                 initialTheme = currentTheme;
+            } else if (prefersDarkScheme.matches) {
+                initialTheme = 'dark';
+            }
+            applyTheme(initialTheme);
+
+             themeToggleBtn.addEventListener('click', () => {
+                 const themeToApply = document.documentElement.hasAttribute('data-theme') ? 'light' : 'dark';
+                 applyTheme(themeToApply);
+            });
+        }
+    </script>
+
+    <script>
+        function redirigirFormulario(event) {
+            event.preventDefault();
+            const emailInput = document.getElementById('email-newsletter');
+            if (emailInput) {
+                const email = emailInput.value;
+                window.location.href = '/subpaginas/formulario.html?email=' + encodeURIComponent(email);
+            } else {
+                console.error("Elemento #email-newsletter no encontrado");
+            }
+        }
+    </script>
+
+    <script>
+
+    const commentForm = document.getElementById('comment-form');
+    const commentNameInput = document.getElementById('comment-name');
+    const commentTextInput = document.getElementById('comment-text');
+    const commentsList = document.getElementById('comments-list');
+
+    if (commentForm && commentNameInput && commentTextInput && commentsList) {
+
+        commentForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = commentNameInput.value.trim();
+            const text = commentTextInput.value.trim();
+
+            if (name === '' || text === '') {
+                alert('Por favor, completa ambos campos.');
+                return;
+            }
+
+            addCommentToPage(name, text);
+
+            commentNameInput.value = '';
+            commentTextInput.value = '';
+        });
+
+    } else {
+        console.error("No se encontraron todos los elementos necesarios para el formulario de comentarios.");
+    }
+
+
+    function addCommentToPage(name, text) {
+        const newComment = document.createElement('div');
+        newComment.classList.add('comment', 'reveal-item');
+
+        const initials = name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+
+        newComment.innerHTML = `
+            <div class="comment-avatar" data-initials="${initials}"></div>
+            <div class="comment-content">
+                <p class="comment-author">${escapeHTML(name)}</p>
+                <p class="comment-text">${escapeHTML(text)}</p>
+            </div>
+        `;
+
+        commentsList.prepend(newComment);
+
+        const newAvatar = newComment.querySelector('.comment-avatar');
+        if (newAvatar) {
+            const commentCount = commentsList.children.length;
+            const colorVarIndex = (commentCount % 3) + 1; // 1, 2, or 3
+            newAvatar.style.backgroundColor = `var(--avatar-bg-${colorVarIndex})`;
+            newAvatar.style.color = `var(--avatar-text-color)`;
+        }
+
+         setTimeout(() => {
+            newComment.classList.add('is-visible');
+         }, 50);
+
+
+        console.log('Comentario añadido a la página:', { name, text });
+    }
+
+    function escapeHTML(str) {
+        const div = document.createElement('div');
+        div.appendChild(document.createTextNode(str));
+        return div.innerHTML;
+    }
+
+    </script>
+
+
 </body>
 </html>
