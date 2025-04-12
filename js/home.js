@@ -1,185 +1,149 @@
-const botonModo = document.getElementById('botonModo');
-    if (botonModo) {
-      const preferDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const currentMode = localStorage.getItem('theme');
+// js/home.js
 
-      // Establecer modo inicial basado en preferencia o guardado
-      if (currentMode === "dark" || (!currentMode && preferDark)) {
-        document.body.classList.remove('modo-claro');
-        botonModo.textContent = '🌙';
-        botonModo.setAttribute('aria-label', 'Cambiar a modo claro');
-      } else {
-        document.body.classList.add('modo-claro');
-        botonModo.textContent = '🌞';
-        botonModo.setAttribute('aria-label', 'Cambiar a modo oscuro');
-      }
+document.addEventListener('DOMContentLoaded', () => {
 
-      botonModo.addEventListener('click', () => {
-        document.body.classList.toggle('modo-claro');
-        let theme = 'dark'; // Modo oscuro por defecto
-        if (document.body.classList.contains('modo-claro')) {
-          botonModo.textContent = '🌞';
-          botonModo.setAttribute('aria-label', 'Cambiar a modo oscuro');
-          theme = 'light';
-        } else {
-          botonModo.textContent = '🌙';
-          botonModo.setAttribute('aria-label', 'Cambiar a modo claro');
-        }
-        localStorage.setItem('theme', theme); // Guardar preferencia
-      });
-    }
+    // --- Lógica Modo Claro/Oscuro ---
+    const modoBtn = document.getElementById('botonModo'); // Busca el botón por su ID
+    const body = document.body;
 
-    // --- Script Carrusel Testimonios ---
-    const track = document.querySelector('.slide-track');
-    if (track && track.children.length > 1) { // Solo inicializar si hay track y más de 1 slide
-      const slides = Array.from(track.children);
-      const nextButton = document.querySelector('.flecha.derecha');
-      const prevButton = document.querySelector('.flecha.izquierda');
-      let slideWidth = slides[0].getBoundingClientRect().width;
-      const numOriginalSlides = slides.length;
-      const numClones = 1; // Clonar 1 al inicio y 1 al final
-
-      // --- Clonación ---
-      // Clonar últimos al inicio
-      for (let i = 0; i < numClones; i++) {
-        const clone = slides[numOriginalSlides - 1 - i].cloneNode(true);
-        clone.classList.add('clon');
-        track.insertBefore(clone, slides[0]);
-      }
-      // Clonar primeros al final
-      for (let i = 0; i < numClones; i++) {
-        const clone = slides[i].cloneNode(true);
-        clone.classList.add('clon');
-        track.appendChild(clone);
-      }
-
-      const allSlides = Array.from(track.children); // Actualizar lista con clones
-      let currentIndex = numClones; // Empezar en el primer slide original
-
-      // --- Posicionamiento Inicial ---
-      const setPosition = (index, animate = false) => {
-        // Asegurarse que slideWidth sea válido
-        if (slideWidth <= 0) {
-            const firstOriginalSlide = track.children[numClones];
-            if (firstOriginalSlide) {
-                slideWidth = firstOriginalSlide.getBoundingClientRect().width;
+    // Función para aplicar el tema y cambiar el emoji
+    const aplicarTema = (esModoClaro) => {
+        if (esModoClaro) {
+            body.classList.add('modo-claro');
+            if (modoBtn) {
+                modoBtn.textContent = '☀️'; // Emoji sol
             }
-            // Si sigue siendo 0, no hacer nada
-            if (slideWidth <= 0) return;
+        } else {
+            body.classList.remove('modo-claro');
+            if (modoBtn) {
+                modoBtn.textContent = '🌙'; // Emoji luna
+            }
         }
-        track.style.transition = animate ? 'transform 0.5s ease-in-out' : 'none';
-        track.style.transform = `translateX(-${slideWidth * index}px)`;
-      };
+    };
 
-      setPosition(currentIndex); // Posición inicial sin animación
+    // Verificar preferencia guardada o del sistema
+    const preferenciaGuardada = localStorage.getItem('theme');
+    let esModoClaroActual = false;
 
-      // Reactivar transición después de un instante
-      setTimeout(() => {
-        if (track) track.style.transition = 'transform 0.5s ease-in-out';
-      }, 50);
-
-      // --- Movimiento ---
-      const moveToSlide = (newIndex) => {
-        currentIndex = newIndex;
-        setPosition(currentIndex, true); // Mover con animación
-      };
-
-      const moveToNext = () => moveToSlide(currentIndex + 1);
-      const moveToPrev = () => moveToSlide(currentIndex - 1);
-
-      // --- Event Listeners Botones ---
-      if (nextButton && prevButton) {
-        nextButton.addEventListener('click', moveToNext);
-        prevButton.addEventListener('click', moveToPrev);
-      } else {
-        console.warn("Botones de flecha no encontrados.");
-      }
-
-
-      // --- Bucle Infinito (Transition End) ---
-      track.addEventListener('transitionend', () => {
-        // Si llegamos al clon del final (después del último original)
-        if (currentIndex >= numOriginalSlides + numClones) {
-          currentIndex = numClones; // Saltar al primer original
-          setPosition(currentIndex); // Saltar sin animación
-        }
-        // Si llegamos al clon del inicio (antes del primer original)
-        if (currentIndex < numClones) {
-          currentIndex = numOriginalSlides + numClones - 1; // Saltar al último original
-          setPosition(currentIndex); // Saltar sin animación
-        }
-      });
-
-      // --- Ajuste en Resize ---
-      let resizeTimer;
-      window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-          // Recalcular ancho y reposicionar SIN animación
-          const firstOriginalSlide = track.children[numClones]; // Asegurarse de medir un slide original
-          if(firstOriginalSlide) {
-             slideWidth = firstOriginalSlide.getBoundingClientRect().width;
-             // Solo reposicionar si el ancho es válido
-             if (slideWidth > 0) {
-                 setPosition(currentIndex);
-             }
-          }
-        }, 250); // Esperar un poco antes de recalcular
-      });
-
-    } else if (track && track.children.length <= 1) {
-        console.warn("Carrusel no inicializado: Se necesita más de un testimonio.");
-        // Opcional: Ocultar flechas si solo hay un testimonio
-        const flechasContainer = document.querySelector('.flechas');
-        if(flechasContainer) flechasContainer.style.display = 'none';
+    if (preferenciaGuardada === 'light') {
+        esModoClaroActual = true;
+    } else if (preferenciaGuardada === 'dark') {
+        esModoClaroActual = false;
     } else {
-        console.warn("Elemento '.slide-track' no encontrado. El carrusel no funcionará.");
+        // Opcional: Usar preferencia del sistema si no hay nada guardado
+        // esModoClaroActual = window.matchMedia('(prefers-color-scheme: light)').matches;
+        // O empezar en oscuro por defecto
+        esModoClaroActual = false;
     }
 
-    const contadorElemento = document.getElementById('contadorNumero');
+    // Aplicar tema inicial
+    aplicarTema(esModoClaroActual);
 
-// Función para animar el contador
-const animarContador = (elemento, final, duracion) => {
-  let inicio = 0;
-  const rango = final - inicio;
-  let tiempoInicio = null;
-
-  const paso = (timestamp) => {
-    if (!tiempoInicio) tiempoInicio = timestamp;
-    const progreso = Math.min((timestamp - tiempoInicio) / duracion, 1);
-    const valorActual = Math.floor(progreso * rango + inicio);
-    elemento.textContent = valorActual; // Actualiza el texto del elemento
-
-    if (progreso < 1) {
-      requestAnimationFrame(paso); // Continúa la animación
+    // Listener para el botón
+    if (modoBtn) {
+        modoBtn.addEventListener('click', () => {
+            esModoClaroActual = !esModoClaroActual;
+            aplicarTema(esModoClaroActual);
+            localStorage.setItem('theme', esModoClaroActual ? 'light' : 'dark');
+        });
     } else {
-      elemento.textContent = final; // Asegura que termine exactamente en el valor final
+        console.warn("Botón 'botonModo' no encontrado.");
     }
-  };
 
-  requestAnimationFrame(paso); // Inicia la animación
-};
+    // --- Fin Lógica Modo Claro/Oscuro ---
 
-// Opcional: Iniciar la animación solo cuando el contador sea visible
-const observerOptions = {
-  root: null, // viewport
-  threshold: 0.1 // Ejecutar cuando al menos el 10% sea visible
-};
 
-const observer = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    // Si el elemento es visible y aún no ha sido animado
-    if (entry.isIntersecting && !contadorElemento.dataset.animado) {
-      animarContador(contadorElemento, 500, 2000); // Anima hasta 500 en 2000ms (2 segundos)
-      contadorElemento.dataset.animado = 'true'; // Marcar como animado
-      // observer.unobserve(entry.target); // Opcional: Dejar de observar una vez animado
+    // --- Lógica del Contador Animado (si está en la página actual) ---
+    const contadorElement = document.getElementById('contadorNumero');
+    if (contadorElement) {
+        const numeroFinal = 1500; // El número al que quieres llegar
+        let contadorActual = 0;
+        const duracion = 2000; // Duración en milisegundos
+        const incremento = numeroFinal / (duracion / 16); // Calcula cuánto incrementar en cada frame (aprox 60fps)
+
+        const animarContador = () => {
+            contadorActual += incremento;
+            if (contadorActual < numeroFinal) {
+                contadorElement.textContent = Math.ceil(contadorActual).toLocaleString(); // Muestra número entero con formato
+                requestAnimationFrame(animarContador); // Sigue animando
+            } else {
+                contadorElement.textContent = numeroFinal.toLocaleString(); // Asegura que termine en el número exacto
+            }
+        };
+
+        // Iniciar animación cuando el elemento sea visible (usando Intersection Observer)
+        const observerContador = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animarContador();
+                    observerContador.unobserve(entry.target); // Deja de observar una vez animado
+                }
+            });
+        }, { threshold: 0.5 }); // Inicia cuando el 50% es visible
+
+        observerContador.observe(contadorElement);
     }
-  });
-}, observerOptions);
+    // --- Fin Lógica Contador ---
 
-// Empezar a observar el elemento contador si existe
-if (contadorElemento) {
-  observer.observe(contadorElemento);
-} else {
-  console.warn("Elemento '#contadorNumero' no encontrado para la animación.");
-}
+
+    // --- Lógica Carrusel Testimonios (si está en la página actual) ---
+    const carrusel = document.querySelector('.carrusel-testimonios');
+    if (carrusel) {
+        const track = carrusel.querySelector('.slide-track');
+        const testimonios = Array.from(track.children);
+        const flechaIzquierda = carrusel.querySelector('.flecha.izquierda');
+        const flechaDerecha = carrusel.querySelector('.flecha.derecha');
+        let slideWidth = testimonios[0].getBoundingClientRect().width;
+        let currentIndex = 0;
+
+        // Clonar testimonios para efecto infinito
+        testimonios.forEach(testimonio => {
+            const clone = testimonio.cloneNode(true);
+            track.appendChild(clone);
+        });
+
+        // Función para mover el carrusel
+        const moveToSlide = (index) => {
+            track.style.transition = 'transform 0.5s ease-in-out';
+            track.style.transform = `translateX(-${index * slideWidth}px)`;
+            currentIndex = index;
+        };
+
+        // Listener para la flecha derecha
+        flechaDerecha.addEventListener('click', () => {
+            if (currentIndex >= testimonios.length) {
+                // Si estamos en el último clon, saltar al principio sin transición
+                track.style.transition = 'none';
+                moveToSlide(0);
+                // Forzar reflow para aplicar la transición en el siguiente movimiento
+                track.offsetHeight;
+            }
+            // Mover al siguiente slide con transición
+            moveToSlide(currentIndex + 1);
+        });
+
+        // Listener para la flecha izquierda
+        flechaIzquierda.addEventListener('click', () => {
+            if (currentIndex <= 0) {
+                 // Si estamos en el primer slide, saltar al último clon sin transición
+                track.style.transition = 'none';
+                moveToSlide(testimonios.length);
+                 // Forzar reflow
+                track.offsetHeight;
+            }
+             // Mover al slide anterior con transición
+            moveToSlide(currentIndex - 1);
+        });
+
+        // Recalcular ancho al redimensionar ventana
+        window.addEventListener('resize', () => {
+            slideWidth = testimonios[0].getBoundingClientRect().width;
+            moveToSlide(currentIndex); // Reajustar posición
+        });
+
+        // Inicializar posición
+        moveToSlide(currentIndex);
+    }
+    // --- Fin Lógica Carrusel ---
+
+}); // Fin DOMContentLoaded
